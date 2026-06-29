@@ -25,12 +25,13 @@
     }
 
     .subtitle {
-      font-size: 26px;
+      font-size: 28px;
       margin-top: 10px;
     }
 
     #feed {
       padding: 35px;
+      padding-bottom: 90px;
     }
 
     .item {
@@ -53,6 +54,15 @@
       padding: 15px;
       font-size: 22px;
     }
+
+    .error {
+      background: #ffdddd;
+      color: #900;
+      padding: 25px;
+      border-radius: 12px;
+      font-size: 28px;
+      font-weight: bold;
+    }
   </style>
 </head>
 
@@ -72,16 +82,34 @@
   </div>
 
   <script>
+    const rssUrl = "https://meetingroomsimo.github.io/MeetingroomsIMO/rss.xml";
+
     function loadRSS() {
-      fetch("rss.xml")
-        .then(response => response.text())
+      fetch(rssUrl + "?t=" + new Date().getTime())
+        .then(response => {
+          if (!response.ok) {
+            throw new Error("RSS file not found");
+          }
+          return response.text();
+        })
         .then(data => {
           const parser = new DOMParser();
           const xml = parser.parseFromString(data, "application/xml");
+
+          const error = xml.querySelector("parsererror");
+          if (error) {
+            throw new Error("RSS file has an XML error");
+          }
+
           const items = xml.querySelectorAll("item");
           const feed = document.getElementById("feed");
 
           feed.innerHTML = "";
+
+          if (items.length === 0) {
+            feed.innerHTML = "<div class='error'>No RSS items found.</div>";
+            return;
+          }
 
           items.forEach(item => {
             const title = item.querySelector("title").textContent;
@@ -95,13 +123,12 @@
         })
         .catch(error => {
           document.getElementById("feed").innerHTML =
-            "Unable to load meeting room information.";
+            "<div class='error'>Unable to load RSS feed. Please check rss.xml.</div>";
         });
     }
 
     loadRSS();
 
-    // Refresh every 5 minutes
     setInterval(loadRSS, 300000);
   </script>
 
