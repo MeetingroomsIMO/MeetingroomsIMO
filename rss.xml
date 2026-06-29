@@ -12,7 +12,7 @@
       <title>Main Hall — Council 137</title>
       <link>https://www.imo.org</link>
       <description><![CDATA[
-        Date: 6–10 June 2026<br>
+        Date: 6–10 July 2026<br>
         Location: Ground floor
       ]]></description>
       <pubDate>Mon, 29 Jun 2026 17:00:00 +0100</pubDate>
@@ -24,7 +24,7 @@
       <title>Committee Room 3–5 — WG.3</title>
       <link>https://www.imo.org</link>
       <description><![CDATA[
-        Date: 6–10 June 2026<br>
+        Date: 6–10 July 2026<br>
         Location: First floor
       ]]></description>
       <pubDate>Mon, 29 Jun 2026 17:00:00 +0100</pubDate>
@@ -36,7 +36,7 @@
       <title>Committee Room 6–8 — WG.4</title>
       <link>https://www.imo.org</link>
       <description><![CDATA[
-        Date: 6–10 June 2026<br>
+        Date: 6–10 July 2026<br>
         Location: First floor
       ]]></description>
       <pubDate>Mon, 29 Jun 2026 17:00:00 +0100</pubDate>
@@ -48,7 +48,7 @@
       <title>Committee Room 9 — WG.1</title>
       <link>https://www.imo.org</link>
       <description><![CDATA[
-        Date: 6–10 June 2026<br>
+        Date: 6–10 July 2026<br>
         Location: Second floor
       ]]></description>
       <pubDate>Mon, 29 Jun 2026 17:00:00 +0100</pubDate>
@@ -60,7 +60,7 @@
       <title>Committee Room 10 — WG.2</title>
       <link>https://www.imo.org</link>
       <description><![CDATA[
-        Date: 6–10 June 2026<br>
+        Date: 6–10 July 2026<br>
         Location: Second floor
       ]]></description>
       <pubDate>Mon, 29 Jun 2026 17:00:00 +0100</pubDate>
@@ -72,23 +72,12 @@
       <title>Committee Room 11–13 — WG.5</title>
       <link>https://www.imo.org</link>
       <description><![CDATA[
-        Date: 6–10 June 2026<br>
+        Date: 6–10 July 2026<br>
         Location: Second floor
       ]]></description>
       <pubDate>Mon, 29 Jun 2026 17:00:00 +0100</pubDate>
       <guid>imo-cr11-13-wg5</guid>
       <category>Meeting room</category>
-    </item>
-
-    <item>
-      <title>Cafeteria</title>
-      <link>https://www.imo.org</link>
-      <description><![CDATA[
-        Location: Fourth floor
-      ]]></description>
-      <pubDate>Mon, 29 Jun 2026 17:00:00 +0100</pubDate>
-      <guid>imo-cafeteria-fourth-floor</guid>
-      <category>Facility</category>
     </item>
 
   </channel>
