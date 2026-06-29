@@ -56,13 +56,5 @@
       <category>Meeting room</category>
     </item>
 
-    <item>
-      <title>Cafeteria | Fourth floor</title>
-      <link>https://meetingroomsimo.github.io/MeetingroomsIMO/rss.xml</link>
-      <pubDate>Mon, 29 Jun 2026 17:00:00 +0100</pubDate>
-      <guid>imo-cafeteria-fourth-floor</guid>
-      <category>Facility</category>
-    </item>
-
   </channel>
 </rss>
