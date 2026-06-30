@@ -40,31 +40,29 @@
     }
 
     .top-bar {
-      background: white;
+      background: #ffffff;
       color: var(--imo-navy);
       border-bottom: 5px solid var(--imo-ocean);
+      width: 100%;
     }
 
     .top-bar-inner {
-      max-width: 1180px;
-      margin: 0 auto;
-      padding: 18px;
+      width: 100%;
+      margin: 0;
+      padding: 22px 72px;
       display: flex;
-      justify-content: space-between;
+      justify-content: flex-start;
       align-items: center;
-      gap: 18px;
     }
 
     .brand {
       display: flex;
       align-items: center;
-      gap: 16px;
-      min-width: 0;
     }
 
     .brand img {
-      max-height: 70px;
-      max-width: 260px;
+      max-height: 105px;
+      max-width: 360px;
       object-fit: contain;
       display: block;
       background: white;
@@ -81,37 +79,7 @@
       font-size: 1.45rem;
       font-weight: 900;
       letter-spacing: 0.04em;
-      flex: 0 0 auto;
       color: var(--imo-navy);
-      background: white;
-    }
-
-    .brand-title strong {
-      display: block;
-      font-size: clamp(1.05rem, 2vw, 1.32rem);
-      letter-spacing: 0.02em;
-      text-transform: uppercase;
-      font-weight: 900;
-      color: var(--imo-navy);
-    }
-
-    .brand-title span {
-      display: block;
-      margin-top: 4px;
-      font-size: 0.95rem;
-      color: var(--imo-blue);
-      font-weight: 500;
-    }
-
-    .official-link {
-      color: var(--imo-navy);
-      border: 1px solid var(--imo-navy);
-      border-radius: 999px;
-      padding: 9px 13px;
-      text-decoration: none;
-      font-weight: 700;
-      font-size: 0.9rem;
-      white-space: nowrap;
       background: white;
     }
 
@@ -348,16 +316,14 @@
       }
 
       .top-bar-inner {
-        align-items: flex-start;
-      }
-
-      .official-link {
-        display: none;
+        padding: 16px 22px;
+        justify-content: flex-start;
+        align-items: center;
       }
 
       .brand img {
-        max-height: 52px;
-        max-width: 190px;
+        max-height: 72px;
+        max-width: 260px;
       }
 
       .logo-fallback {
@@ -430,14 +396,7 @@
         <img src="imo-logo.png" alt="International Maritime Organization logo"
              onerror="this.style.display='none'; document.querySelector('.logo-fallback').style.display='flex';">
         <div class="logo-fallback">IMO</div>
-
-        <div class="brand-title">
-          <strong>International Maritime Organization</strong>
-          <span>Room location information</span>
-        </div>
       </div>
-
-      <a class="official-link" href="https://www.imo.org/" target="_blank" rel="noopener">imo.org</a>
     </div>
   </header>
 
