@@ -3,7 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>IMO Meeting Rooms</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
 
   <style>
     :root {
@@ -26,7 +31,7 @@
 
     body {
       margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
+      font-family: "Roboto", Arial, Helvetica, sans-serif;
       color: var(--text-main);
       background:
         linear-gradient(rgba(0, 58, 112, 0.78), rgba(0, 58, 112, 0.78)),
@@ -73,7 +78,7 @@
       align-items: center;
       justify-content: center;
       font-size: 1.45rem;
-      font-weight: 800;
+      font-weight: 900;
       letter-spacing: 0.04em;
       flex: 0 0 auto;
     }
@@ -83,6 +88,7 @@
       font-size: clamp(1.05rem, 2vw, 1.32rem);
       letter-spacing: 0.02em;
       text-transform: uppercase;
+      font-weight: 900;
     }
 
     .brand-title span {
@@ -90,6 +96,7 @@
       margin-top: 4px;
       font-size: 0.95rem;
       color: rgba(255,255,255,0.82);
+      font-weight: 500;
     }
 
     .official-link {
@@ -127,6 +134,7 @@
       font-size: clamp(2.2rem, 5vw, 4.2rem);
       line-height: 1.02;
       letter-spacing: -0.03em;
+      font-weight: 900;
     }
 
     .hero p {
@@ -134,6 +142,7 @@
       color: rgba(255,255,255,0.9);
       font-size: clamp(1.05rem, 2vw, 1.3rem);
       max-width: 680px;
+      font-weight: 400;
     }
 
     .accent-line {
@@ -199,7 +208,7 @@
     .notice small {
       display: block;
       color: var(--text-muted);
-      font-weight: 600;
+      font-weight: 500;
       margin-top: 5px;
     }
 
@@ -222,6 +231,7 @@
       cursor: pointer;
       text-decoration: none;
       box-shadow: var(--shadow);
+      font-family: "Roboto", Arial, Helvetica, sans-serif;
     }
 
     .primary {
@@ -296,6 +306,7 @@
       color: rgba(255,255,255,0.88);
       margin-top: 14px;
       font-size: 0.92rem;
+      font-weight: 400;
     }
 
     footer {
@@ -544,7 +555,7 @@
         if (items.length === 0) {
           const emptyCard = document.createElement("article");
           emptyCard.className = "card";
-          emptyCard.appendChild(createTextElement("room", "No Working groups planned"));
+          emptyCard.appendChild(createTextElement("room", "No meeting rooms currently listed"));
           container.appendChild(emptyCard);
           status.textContent = "No room items found in rss.xml.";
           return;
@@ -561,7 +572,7 @@
         container.innerHTML = "";
         const errorCard = document.createElement("article");
         errorCard.className = "card";
-        errorCard.appendChild(createTextElement("room", "No Working groups planned"));
+        errorCard.appendChild(createTextElement("room", "Unable to load meeting rooms"));
         errorCard.appendChild(createTextElement("meeting", "Please check rss.xml."));
         container.appendChild(errorCard);
         status.textContent = "The page could not read rss.xml.";
