@@ -42,14 +42,16 @@
     .top-bar {
       background: #ffffff;
       color: var(--imo-navy);
-      border-bottom: 5px solid var(--imo-ocean);
       width: 100%;
+      position: relative;
+      z-index: 5;
+      box-shadow: 0 14px 32px rgba(0, 35, 70, 0.35);
     }
 
     .top-bar-inner {
       width: 100%;
       margin: 0;
-      padding: 22px 72px;
+      padding: 26px 72px 24px;
       display: flex;
       justify-content: flex-start;
       align-items: center;
@@ -61,22 +63,22 @@
     }
 
     .brand img {
-      max-height: 105px;
-      max-width: 360px;
+      max-height: 130px;
+      max-width: 470px;
       object-fit: contain;
       display: block;
       background: white;
     }
 
     .logo-fallback {
-      width: 74px;
-      height: 74px;
+      width: 92px;
+      height: 92px;
       border: 2px solid var(--imo-navy);
       border-radius: 50%;
       display: none;
       align-items: center;
       justify-content: center;
-      font-size: 1.45rem;
+      font-size: 1.7rem;
       font-weight: 900;
       letter-spacing: 0.04em;
       color: var(--imo-navy);
@@ -316,20 +318,20 @@
       }
 
       .top-bar-inner {
-        padding: 16px 22px;
+        padding: 18px 22px;
         justify-content: flex-start;
         align-items: center;
       }
 
       .brand img {
-        max-height: 72px;
-        max-width: 260px;
+        max-height: 92px;
+        max-width: 310px;
       }
 
       .logo-fallback {
-        width: 58px;
-        height: 58px;
-        font-size: 1.1rem;
+        width: 64px;
+        height: 64px;
+        font-size: 1.2rem;
       }
 
       .hero {
