@@ -124,6 +124,14 @@
       justify-content: center;
     }
 
+    .meeting-title {
+      margin: 0 0 10px;
+      color: white;
+      font-size: clamp(1.3rem, 2.6vw, 2rem);
+      line-height: 1.15;
+      font-weight: 900;
+    }
+
     .hero h1 {
       margin: 0;
       color: white;
@@ -351,6 +359,15 @@
       color: var(--imo-navy);
     }
 
+    .schedule-note {
+      margin: -4px 0 12px;
+      font-size: 0.9rem;
+      line-height: 1.4;
+      color: var(--imo-navy);
+      opacity: 0.86;
+      font-weight: 500;
+    }
+
     .schedule-row {
       display: grid;
       grid-template-columns: 150px 1fr;
@@ -545,12 +562,13 @@
   <section class="hero">
     <div class="hero-card">
       <div class="accent-line"></div>
-      <h1>IMO rooms and locations</h1>
+      <p class="meeting-title">Council, 137th Session</p>
+      <h1>IMO Rooms and Locations</h1>
       <p>Current committee room locations for plenary and working groups for delegates and participants.</p>
     </div>
 
     <div class="qr-box">
-      <img src="IMO_meeting_rooms_QR.png" alt="QR code for IMO rooms and locations website">
+      <img src="IMO_meeting_rooms_QR.png" alt="QR code for IMO Rooms and Locations website">
       <p>Scan to open on your phone</p>
     </div>
   </section>
@@ -558,7 +576,7 @@
   <main>
     <div class="top-row">
       <div class="notice" id="notice">
-        Current room location information
+        Council, 137th Session – room location information
         <small id="updated">Loading latest room list...</small>
       </div>
 
@@ -575,7 +593,8 @@
 
     <section class="delegate-info" aria-label="Delegate information">
       <article class="info-card">
-        <h2>Daily schedule</h2>
+        <h2>Plenary timetable</h2>
+        <p class="schedule-note">Indicative timetable for plenary sessions only.</p>
 
         <div class="schedule-row">
           <div class="schedule-label">Morning session</div>
@@ -594,27 +613,27 @@
       </article>
 
       <article class="info-card">
-        <h2>Documentation and hybrid meetings</h2>
+        <h2>Council documentation and hybrid meetings</h2>
 
         <div class="doc-links">
-          <a class="doc-link" href="https://docs.imo.org/" target="_blank" rel="noopener">
-            Access meeting documents: IMODOCS
+          <a class="doc-link" href="https://docs.imo.org/Category.aspx?cid=36" target="_blank" rel="noopener">
+            Access Council documents
           </a>
 
-          <a class="doc-link" href="https://docs.imo.org/" target="_blank" rel="noopener">
+          <a class="doc-link" href="https://docs.imo.org/Shared/Download.aspx?did=138130" target="_blank" rel="noopener">
             CL No. 4623 – Information on Hybrid Meetings
           </a>
 
-          <a class="doc-link" href="https://docs.imo.org/" target="_blank" rel="noopener">
+          <a class="doc-link" href="https://docs.imo.org/Shared/Download.aspx?did=138212" target="_blank" rel="noopener">
             CL No. 4627 – Guidance on the use of hybrid meeting capability
           </a>
 
-          <a class="doc-link" href="https://docs.imo.org/" target="_blank" rel="noopener">
-            Best practices to attend IMO hybrid meetings
+          <a class="doc-link" href="https://docs.imo.org/Shared/Download.aspx?did=138313" target="_blank" rel="noopener">
+            Best practices to attend IMO's hybrid meetings
           </a>
 
-          <a class="doc-link" href="https://docs.imo.org/" target="_blank" rel="noopener">
-            Zoom guide to meetings
+          <a class="doc-link" href="https://docs.imo.org/Shared/Download.aspx?did=138312" target="_blank" rel="noopener">
+            ZOOM – Guide to meetings
           </a>
         </div>
 
@@ -639,8 +658,8 @@
       if (navigator.share) {
         try {
           await navigator.share({
-            title: "IMO Committee rooms and locations",
-            text: "Current IMO committee room locations",
+            title: "Council, 137th Session – IMO Committee Rooms and Locations",
+            text: "Current IMO committee room locations for Council, 137th Session",
             url: pageUrl
           });
           return;
@@ -739,7 +758,6 @@
 
     async function loadRooms() {
       const container = document.getElementById("rooms");
-      const notice = document.getElementById("notice");
       const updated = document.getElementById("updated");
       const status = document.getElementById("status");
 
@@ -749,13 +767,7 @@
 
         const parser = new DOMParser();
         const xml = parser.parseFromString(text, "application/xml");
-
-        const channelDescription = xml.querySelector("channel > description")?.textContent;
         const items = Array.from(xml.querySelectorAll("item"));
-
-        if (channelDescription) {
-          notice.firstChild.textContent = channelDescription;
-        }
 
         updated.textContent = "Last refreshed: " + refreshTimeText();
 
