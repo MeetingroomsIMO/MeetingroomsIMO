@@ -51,23 +51,23 @@
       max-width: 1180px;
       margin: 0 auto;
       padding: 18px;
-      min-height: 128px;
+      min-height: 118px;
       display: flex;
-      justify-content: center;
+      justify-content: space-between;
       align-items: center;
-      position: relative;
+      gap: 18px;
     }
 
     .brand {
       display: flex;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-start;
       min-width: 0;
     }
 
     .brand img {
+      width: clamp(220px, 28vw, 355px);
       max-height: 99px;
-      max-width: 355px;
       object-fit: contain;
       display: block;
       background: white;
@@ -90,10 +90,6 @@
     }
 
     .official-link {
-      position: absolute;
-      right: 18px;
-      top: 50%;
-      transform: translateY(-50%);
       color: var(--imo-navy);
       border: 1px solid var(--imo-navy);
       border-radius: 999px;
@@ -103,6 +99,7 @@
       font-size: 0.9rem;
       white-space: nowrap;
       background: white;
+      flex: 0 0 auto;
     }
 
     .hero {
@@ -351,22 +348,19 @@
       .top-bar-inner {
         min-height: auto;
         padding: 16px 22px;
-        justify-content: center;
+        justify-content: space-between;
         align-items: center;
         gap: 12px;
       }
 
       .brand img {
+        width: min(62vw, 207px);
         max-height: 68px;
-        max-width: 207px;
       }
 
       .official-link {
-        position: static;
-        transform: none;
         font-size: 0.78rem;
         padding: 7px 10px;
-        margin-left: 8px;
       }
 
       .logo-fallback {
@@ -491,7 +485,7 @@
   </footer>
 
   <script>
-    const pageUrl = "https://meetingroomsimo.github.io/MeetingroomsIMO/index.html";
+    const pageUrl = "https://meetingroomsimo.github.io/MeetingroomsIMO/";
 
     async function sharePage() {
       if (navigator.share) {
