@@ -20,7 +20,6 @@
 
       --card-bg: rgba(255, 255, 255, 0.94);
       --text-main: #17212B;
-      --text-muted: #5F6F7F;
       --border: #D7E2EA;
       --shadow: 0 12px 30px rgba(0, 58, 112, 0.22);
     }
@@ -41,17 +40,31 @@
 
     .top-bar {
       background: #ffffff;
-      color: var(--imo-navy);
       width: 100%;
       position: relative;
-      z-index: 5;
-      box-shadow: 0 14px 32px rgba(0, 35, 70, 0.35);
+      z-index: 10;
+      box-shadow: 0 18px 34px rgba(0, 35, 70, 0.38);
+    }
+
+    .top-bar::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -20px;
+      height: 20px;
+      background: linear-gradient(
+        to bottom,
+        rgba(0, 35, 70, 0.28),
+        rgba(0, 35, 70, 0)
+      );
+      pointer-events: none;
     }
 
     .top-bar-inner {
       width: 100%;
       margin: 0;
-      padding: 26px 72px 24px;
+      padding: 28px 72px 30px;
       display: flex;
       justify-content: flex-start;
       align-items: center;
@@ -63,22 +76,22 @@
     }
 
     .brand img {
-      max-height: 130px;
-      max-width: 470px;
+      width: min(620px, 46vw);
+      max-height: 175px;
       object-fit: contain;
       display: block;
       background: white;
     }
 
     .logo-fallback {
-      width: 92px;
-      height: 92px;
-      border: 2px solid var(--imo-navy);
+      width: 110px;
+      height: 110px;
+      border: 3px solid var(--imo-navy);
       border-radius: 50%;
       display: none;
       align-items: center;
       justify-content: center;
-      font-size: 1.7rem;
+      font-size: 2rem;
       font-weight: 900;
       letter-spacing: 0.04em;
       color: var(--imo-navy);
@@ -88,7 +101,7 @@
     .hero {
       max-width: 1180px;
       margin: 0 auto;
-      padding: 46px 18px 30px;
+      padding: 58px 18px 30px;
       display: grid;
       grid-template-columns: 1fr 240px;
       gap: 28px;
@@ -319,25 +332,25 @@
       }
 
       .top-bar-inner {
-        padding: 18px 22px;
+        padding: 20px 22px 22px;
         justify-content: flex-start;
         align-items: center;
       }
 
       .brand img {
-        max-height: 92px;
-        max-width: 310px;
+        width: min(340px, 86vw);
+        max-height: 125px;
       }
 
       .logo-fallback {
-        width: 64px;
-        height: 64px;
-        font-size: 1.2rem;
+        width: 74px;
+        height: 74px;
+        font-size: 1.35rem;
       }
 
       .hero {
         display: block;
-        padding: 26px 12px 16px;
+        padding: 42px 12px 16px;
       }
 
       .hero-card {
