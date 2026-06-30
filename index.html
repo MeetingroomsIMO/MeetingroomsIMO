@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>IMO Meeting Rooms</title>
+  <title>IMO Rooms and Locations</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -219,25 +219,17 @@
       align-items: center;
     }
 
-    button,
-    .button-link {
+    button {
       border: 1px solid var(--border);
-      background: white;
-      color: var(--imo-navy);
+      background: var(--imo-navy);
+      color: white;
       border-radius: 999px;
       padding: 11px 15px;
       font-weight: 800;
       font-size: 0.95rem;
       cursor: pointer;
-      text-decoration: none;
       box-shadow: var(--shadow);
       font-family: "Roboto", Arial, Helvetica, sans-serif;
-    }
-
-    .primary {
-      background: var(--imo-navy);
-      color: white;
-      border-color: var(--imo-navy);
     }
 
     .grid {
@@ -355,7 +347,10 @@
       }
 
       .qr-box {
-        display: none;
+        margin-top: 18px;
+        max-width: 220px;
+        margin-left: auto;
+        margin-right: auto;
       }
 
       main {
@@ -370,8 +365,7 @@
         width: 100%;
       }
 
-      button,
-      .button-link {
+      button {
         flex: 1;
         text-align: center;
       }
@@ -409,7 +403,7 @@
 
         <div class="brand-title">
           <strong>International Maritime Organization</strong>
-          <span>Meeting room information</span>
+          <span>Room location information</span>
         </div>
       </div>
 
@@ -420,12 +414,12 @@
   <section class="hero">
     <div class="hero-card">
       <div class="accent-line"></div>
-      <h1>IMO Meeting Rooms</h1>
-      <p>Current room locations for delegates and meeting participants.</p>
+      <h1>IMO Rooms and Locations</h1>
+      <p>Current room locations for delegates and participants.</p>
     </div>
 
     <div class="qr-box">
-      <img src="IMO_meeting_rooms_QR.png" alt="QR code for IMO Meeting Rooms website">
+      <img src="IMO_meeting_rooms_QR.png" alt="QR code for IMO Rooms and Locations website">
       <p>Scan to open on your phone</p>
     </div>
   </section>
@@ -433,13 +427,12 @@
   <main>
     <div class="top-row">
       <div class="notice" id="notice">
-        Current meeting room information
+        Current room location information
         <small id="updated">Loading latest room list...</small>
       </div>
 
       <div class="actions">
-        <button class="primary" onclick="sharePage()">Share page</button>
-        <a class="button-link" href="rss.xml">RSS feed</a>
+        <button onclick="sharePage()">Share page</button>
       </div>
     </div>
 
@@ -449,7 +442,7 @@
       </article>
     </section>
 
-    <p class="status" id="status">Information loads from rss.xml.</p>
+    <p class="status" id="status">Information loads from rss.xml and refreshes every hour.</p>
   </main>
 
   <footer>
@@ -463,8 +456,8 @@
       if (navigator.share) {
         try {
           await navigator.share({
-            title: "IMO Meeting Rooms",
-            text: "Current IMO meeting room locations",
+            title: "IMO Rooms and Locations",
+            text: "Current IMO room locations",
             url: pageUrl
           });
           return;
@@ -477,6 +470,17 @@
       } catch (error) {
         alert(pageUrl);
       }
+    }
+
+    function refreshTimeText() {
+      return new Date().toLocaleString("en-GB", {
+        day: "2-digit",
+        month: "short",
+        year: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit"
+      });
     }
 
     function createTextElement(className, text) {
@@ -495,21 +499,21 @@
 
     function createCard(title) {
       const parts = title.split("|").map(part => part.trim());
-      const roomMeeting = parts[0] || "";
+      const roomLocation = parts[0] || "";
       const date = parts[1] || "";
       const floor = parts[2] || "";
 
-      const splitRoom = roomMeeting.split("—").map(part => part.trim());
+      const splitRoom = roomLocation.split("—").map(part => part.trim());
       const room = splitRoom[0] || "Room";
-      const meeting = splitRoom[1] || "";
+      const location = splitRoom[1] || "";
 
       const card = document.createElement("article");
       card.className = "card";
 
       card.appendChild(createTextElement("room", room));
 
-      if (meeting) {
-        card.appendChild(createTextElement("meeting", meeting));
+      if (location) {
+        card.appendChild(createTextElement("meeting", location));
       }
 
       const details = document.createElement("div");
@@ -537,25 +541,20 @@
         const xml = parser.parseFromString(text, "application/xml");
 
         const channelDescription = xml.querySelector("channel > description")?.textContent;
-        const lastBuildDate = xml.querySelector("channel > lastBuildDate")?.textContent;
         const items = Array.from(xml.querySelectorAll("item"));
 
         if (channelDescription) {
           notice.firstChild.textContent = channelDescription;
         }
 
-        if (lastBuildDate) {
-          updated.textContent = "Last updated: " + lastBuildDate;
-        } else {
-          updated.textContent = "Latest room list loaded.";
-        }
+        updated.textContent = "Last refreshed: " + refreshTimeText();
 
         container.innerHTML = "";
 
         if (items.length === 0) {
           const emptyCard = document.createElement("article");
           emptyCard.className = "card";
-          emptyCard.appendChild(createTextElement("room", "No meeting rooms currently listed"));
+          emptyCard.appendChild(createTextElement("room", "No rooms currently listed"));
           container.appendChild(emptyCard);
           status.textContent = "No room items found in rss.xml.";
           return;
@@ -566,20 +565,22 @@
           container.appendChild(createCard(title));
         });
 
-        status.textContent = "To update this page, edit rss.xml only.";
+        status.textContent = "Information loads from rss.xml and refreshes every hour.";
 
       } catch (error) {
         container.innerHTML = "";
         const errorCard = document.createElement("article");
         errorCard.className = "card";
-        errorCard.appendChild(createTextElement("room", "Unable to load meeting rooms"));
+        errorCard.appendChild(createTextElement("room", "Unable to load rooms"));
         errorCard.appendChild(createTextElement("meeting", "Please check rss.xml."));
         container.appendChild(errorCard);
         status.textContent = "The page could not read rss.xml.";
+        updated.textContent = "Last refresh failed: " + refreshTimeText();
       }
     }
 
     loadRooms();
+    setInterval(loadRooms, 3600000);
   </script>
 </body>
 </html>
