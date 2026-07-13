@@ -334,6 +334,30 @@
       border-color: #CBD5E1;
     }
 
+    .format-hybrid {
+      background: #DFF5F7;
+      border-color: #8ED3DC;
+      color: #005B66;
+    }
+
+    .format-tbc {
+      background: #FFF3D9;
+      border-color: #E7C56E;
+      color: #6B4B00;
+    }
+
+    .format-in-person {
+      background: #F1ECFA;
+      border-color: #CDBBEA;
+      color: #4B2B73;
+    }
+
+    .format-other {
+      background: #F1F5F9;
+      border-color: #CBD5E1;
+      color: var(--imo-navy);
+    }
+
     .delegate-info {
       margin-top: 28px;
       display: grid;
@@ -661,6 +685,7 @@
     <section class="delegate-info" id="delegateInfo" aria-label="Delegate information">
       <article class="info-card" id="timetableCard">
         <h2 id="timetableTitle">Plenary timetable</h2>
+
         <p class="schedule-note" id="timetableNote">
           Indicative timetable for plenary sessions only.
         </p>
@@ -795,7 +820,9 @@
         return fallback;
       }
 
-      return node.textContent.trim() || fallback;
+      const value = node.textContent.replace(/\s+/g, " ").trim();
+
+      return value || fallback;
     }
 
     function refreshTimeText() {
@@ -826,7 +853,7 @@
 
           return;
         } catch (error) {
-          /* User may have cancelled sharing. */
+          /* The user may have cancelled sharing. */
         }
       }
 
@@ -853,25 +880,46 @@
     }
 
     function getFloorClass(floor) {
-      const floorLower = floor.toLowerCase();
+      const value = floor.toLowerCase();
 
-      if (floorLower.includes("ground")) {
+      if (value.includes("ground")) {
         return "floor-ground";
       }
 
-      if (floorLower.includes("first")) {
+      if (value.includes("first")) {
         return "floor-first";
       }
 
-      if (floorLower.includes("second")) {
+      if (value.includes("second")) {
         return "floor-second";
       }
 
-      if (floorLower.includes("third")) {
+      if (value.includes("third")) {
         return "floor-third";
       }
 
       return "floor-other";
+    }
+
+    function getFormatClass(format) {
+      const value = format.toLowerCase();
+
+      if (value.includes("hybrid")) {
+        return "format-hybrid";
+      }
+
+      if (value.includes("tbc")) {
+        return "format-tbc";
+      }
+
+      if (
+        value.includes("in-person") ||
+        value.includes("in person")
+      ) {
+        return "format-in-person";
+      }
+
+      return "format-other";
     }
 
     function createCard(title) {
@@ -880,6 +928,7 @@
       const roomAndUse = parts[0] || "";
       const date = parts[1] || "";
       const floor = parts[2] || "";
+      const format = parts[3] || "";
 
       const roomParts = roomAndUse.split("—").map(part => part.trim());
 
@@ -903,7 +952,15 @@
       }
 
       if (floor) {
-        details.appendChild(createTag(floor, getFloorClass(floor)));
+        details.appendChild(
+          createTag(floor, getFloorClass(floor))
+        );
+      }
+
+      if (format) {
+        details.appendChild(
+          createTag(format, getFormatClass(format))
+        );
       }
 
       card.appendChild(details);
@@ -948,17 +1005,29 @@
         "Access " + meetingTitle + " documents"
       );
 
-      const documentUrl = getNamespaceValue(xml, "documentUrl", "");
+      const documentUrl = getNamespaceValue(
+        xml,
+        "documentUrl",
+        ""
+      );
 
       currentMeetingTitle = meetingTitle;
 
       document.title =
         meetingTitle + " – IMO Committee Rooms and Locations";
 
-      document.getElementById("meetingTitle").textContent = meetingTitle;
-      document.getElementById("heroTitle").textContent = heroTitle;
-      document.getElementById("heroDescription").textContent = heroDescription;
-      document.getElementById("noticeText").textContent = noticeText;
+      document.getElementById("meetingTitle").textContent =
+        meetingTitle;
+
+      document.getElementById("heroTitle").textContent =
+        heroTitle;
+
+      document.getElementById("heroDescription").textContent =
+        heroDescription;
+
+      document.getElementById("noticeText").textContent =
+        noticeText;
+
       document.getElementById("documentationTitle").textContent =
         documentationTitle;
 
@@ -975,14 +1044,18 @@
     }
 
     function updateTimetable(xml) {
-      const showTimetable = getNamespaceValue(
-        xml,
-        "showTimetable",
-        "false"
-      ).toLowerCase() === "true";
+      const showTimetable =
+        getNamespaceValue(
+          xml,
+          "showTimetable",
+          "false"
+        ).toLowerCase() === "true";
 
-      const timetableCard = document.getElementById("timetableCard");
-      const delegateInfo = document.getElementById("delegateInfo");
+      const timetableCard =
+        document.getElementById("timetableCard");
+
+      const delegateInfo =
+        document.getElementById("delegateInfo");
 
       if (!showTimetable) {
         timetableCard.hidden = true;
@@ -994,7 +1067,11 @@
       delegateInfo.classList.remove("single-column");
 
       document.getElementById("timetableTitle").textContent =
-        getNamespaceValue(xml, "timetableTitle", "Plenary timetable");
+        getNamespaceValue(
+          xml,
+          "timetableTitle",
+          "Plenary timetable"
+        );
 
       document.getElementById("timetableNote").textContent =
         getNamespaceValue(
@@ -1061,18 +1138,21 @@
         const text = await response.text();
 
         const parser = new DOMParser();
-        const xml = parser.parseFromString(text, "application/xml");
+        const xml = parser.parseFromString(
+          text,
+          "application/xml"
+        );
 
-        const parserError = xml.querySelector("parsererror");
-
-        if (parserError) {
+        if (xml.querySelector("parsererror")) {
           throw new Error("rss.xml contains invalid XML");
         }
 
         updateMeetingInformation(xml);
         updateTimetable(xml);
 
-        const items = Array.from(xml.querySelectorAll("item"));
+        const items = Array.from(
+          xml.querySelectorAll("item")
+        );
 
         updated.textContent =
           "Last refreshed: " + refreshTimeText();
@@ -1080,11 +1160,18 @@
         container.innerHTML = "";
 
         if (items.length === 0) {
-          const emptyCard = document.createElement("article");
+          const emptyCard =
+            document.createElement("article");
+
           emptyCard.className = "card";
+
           emptyCard.appendChild(
-            createTextElement("room", "No rooms currently listed")
+            createTextElement(
+              "room",
+              "No rooms currently listed"
+            )
           );
+
           container.appendChild(emptyCard);
 
           status.textContent =
@@ -1095,7 +1182,9 @@
 
         items.forEach(item => {
           const title =
-            item.querySelector("title")?.textContent?.trim() || "";
+            item.querySelector("title")
+              ?.textContent
+              ?.trim() || "";
 
           if (title) {
             container.appendChild(createCard(title));
@@ -1108,15 +1197,23 @@
       } catch (error) {
         container.innerHTML = "";
 
-        const errorCard = document.createElement("article");
+        const errorCard =
+          document.createElement("article");
+
         errorCard.className = "card";
 
         errorCard.appendChild(
-          createTextElement("room", "Unable to load rooms")
+          createTextElement(
+            "room",
+            "Unable to load rooms"
+          )
         );
 
         errorCard.appendChild(
-          createTextElement("meeting", "Please check rss.xml.")
+          createTextElement(
+            "meeting",
+            "Please check rss.xml."
+          )
         );
 
         container.appendChild(errorCard);
