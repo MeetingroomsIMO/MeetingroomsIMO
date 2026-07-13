@@ -4,8 +4,9 @@
   xmlns:imo="https://meetingroomsimo.github.io/MeetingroomsIMO/schema"
 >
   <channel>
+
     <title>
-      Sub-Committee on Implementation of IMO Instruments (III), 12th session
+      Sub-Committee on Implementation of IMO Instruments (III), 12th session — 20–24 July 2026
     </title>
 
     <link>
@@ -25,7 +26,7 @@
     <ttl>60</ttl>
 
     <imo:meetingTitle>
-      Sub-Committee on Implementation of IMO Instruments (III), 12th session
+      Sub-Committee on Implementation of IMO Instruments (III), 12th session — 20–24 July 2026
     </imo:meetingTitle>
 
     <imo:heroTitle>
@@ -33,8 +34,7 @@
     </imo:heroTitle>
 
     <imo:heroDescription>
-      Current room locations for plenary, working groups,
-      drafting group and experts group for delegates and participants.
+      Current room locations for plenary, working groups, drafting group and experts group for delegates and participants.
     </imo:heroDescription>
 
     <imo:noticeText>
