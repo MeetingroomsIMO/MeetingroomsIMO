@@ -1,59 +1,59 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <rss version="2.0">
   <channel>
-    <title>IMO Meeting rooms and locations</title>
+    <title>IMO Committee Rooms and Locations</title>
     <link>https://meetingroomsimo.github.io/MeetingroomsIMO/</link>
-    <description>IMO committee room information for delegate</description>
+    <description>III 12 committee room information for delegates</description>
     <language>en-gb</language>
-    <lastBuildDate>Mon, 29 Jun 2026 17:00:00 +0100</lastBuildDate>
+    <lastBuildDate>Mon, 13 Jul 2026 13:00:00 +0100</lastBuildDate>
     <ttl>10</ttl>
 
     <item>
-      <title>Main Hall — COUNCIL 137 PLENARY | 6–10 July 2026 | Ground floor</title>
-      <link>https://meetingroomsimo.github.io/MeetingroomsIMO/rss.xml</link>
-      <pubDate>Mon, 29 Jun 2026 17:00:00 +0100</pubDate>
-      <guid>imo-main-hall-council-137</guid>
-      <category>Meeting room</category>
+      <title>Main Hall — III 12 Plenary | 20–24 July 2026 | Ground floor</title>
+      <link>https://meetingroomsimo.github.io/MeetingroomsIMO/</link>
+      <pubDate>Mon, 13 Jul 2026 13:00:00 +0100</pubDate>
+      <guid>imo-main-hall-iii-12-plenary</guid>
+      <category>Committee room</category>
     </item>
 
     <item>
-      <title>Committee Room 3–5 — No Working Group planned | 6–10 July 2026 | First floor</title>
-      <link>https://meetingroomsimo.github.io/MeetingroomsIMO/rss.xml</link>
-      <pubDate>Mon, 29 Jun 2026 17:00:00 +0100</pubDate>
-      <guid>imo-cr3-5-wg3</guid>
-      <category>Meeting room</category>
+      <title>CR 9 — Working Group on Casualty Investigation (WG 1) | 20–24 July 2026 | Second floor</title>
+      <link>https://meetingroomsimo.github.io/MeetingroomsIMO/</link>
+      <pubDate>Mon, 13 Jul 2026 13:00:00 +0100</pubDate>
+      <guid>imo-cr9-iii-12-wg1-casualty-investigation</guid>
+      <category>Committee room</category>
     </item>
 
     <item>
-      <title>Committee Room 6–8 — No Working Group planned | 6–10 July 2026 | First floor</title>
-      <link>https://meetingroomsimo.github.io/MeetingroomsIMO/rss.xml</link>
-      <pubDate>Mon, 29 Jun 2026 17:00:00 +0100</pubDate>
-      <guid>imo-cr6-8-wg4</guid>
-      <category>Meeting room</category>
+      <title>CR 10 — Working Group on Port State Control (WG 2) | 20–24 July 2026 | Second floor</title>
+      <link>https://meetingroomsimo.github.io/MeetingroomsIMO/</link>
+      <pubDate>Mon, 13 Jul 2026 13:00:00 +0100</pubDate>
+      <guid>imo-cr10-iii-12-wg2-port-state-control</guid>
+      <category>Committee room</category>
     </item>
 
     <item>
-      <title>Committee Room 9 — No Working Group planned | 6–10 July 2026 | Second floor</title>
-      <link>https://meetingroomsimo.github.io/MeetingroomsIMO/rss.xml</link>
-      <pubDate>Mon, 29 Jun 2026 17:00:00 +0100</pubDate>
-      <guid>imo-cr9-wg1</guid>
-      <category>Meeting room</category>
+      <title>CR 11–13 — Working Group on Survey Guidelines under the HSSC, the Non-exhaustive list of obligations, and Guidance on the ISM Code (WG 3) | 20–24 July 2026 | Second floor</title>
+      <link>https://meetingroomsimo.github.io/MeetingroomsIMO/</link>
+      <pubDate>Mon, 13 Jul 2026 13:00:00 +0100</pubDate>
+      <guid>imo-cr11-13-iii-12-wg3-survey-guidelines-hssc-ism</guid>
+      <category>Committee room</category>
     </item>
 
     <item>
-      <title>Committee Room 10 — No Working Group planned | 6–10 July 2026 | Second floor</title>
-      <link>https://meetingroomsimo.github.io/MeetingroomsIMO/rss.xml</link>
-      <pubDate>Mon, 29 Jun 2026 17:00:00 +0100</pubDate>
-      <guid>imo-cr10-wg2</guid>
-      <category>Meeting room</category>
+      <title>CR 3–5 — Drafting Group on Analysis of Consolidated Audit Summary Reports (DG) | 20–24 July 2026 | First floor</title>
+      <link>https://meetingroomsimo.github.io/MeetingroomsIMO/</link>
+      <pubDate>Mon, 13 Jul 2026 13:00:00 +0100</pubDate>
+      <guid>imo-cr3-5-iii-12-dg-audit-summary-reports</guid>
+      <category>Committee room</category>
     </item>
 
     <item>
-      <title>Committee Room 11–13 — No Working Group planned | 6–10 July 2026 | Second floor</title>
-      <link>https://meetingroomsimo.github.io/MeetingroomsIMO/rss.xml</link>
-      <pubDate>Mon, 29 Jun 2026 17:00:00 +0100</pubDate>
-      <guid>imo-cr11-13-wg5</guid>
-      <category>Meeting room</category>
+      <title>CR 6–8 — Experts Group on Fishing Vessels (EG) | 20–24 July 2026 | First floor</title>
+      <link>https://meetingroomsimo.github.io/MeetingroomsIMO/</link>
+      <pubDate>Mon, 13 Jul 2026 13:00:00 +0100</pubDate>
+      <guid>imo-cr6-8-iii-12-eg-fishing-vessels</guid>
+      <category>Committee room</category>
     </item>
 
   </channel>
