@@ -4,20 +4,36 @@
   xmlns:imo="https://meetingroomsimo.github.io/MeetingroomsIMO/schema"
 >
   <channel>
-    <title>III 12 – IMO Committee Rooms and Locations</title>
-    <link>https://meetingroomsimo.github.io/MeetingroomsIMO/</link>
-    <description>III 12 committee room information for delegates</description>
+    <title>
+      Sub-Committee on Implementation of IMO Instruments (III), 12th session
+    </title>
+
+    <link>
+      https://meetingroomsimo.github.io/MeetingroomsIMO/
+    </link>
+
+    <description>
+      III 12 committee room information for delegates
+    </description>
+
     <language>en-gb</language>
-    <lastBuildDate>Mon, 13 Jul 2026 13:00:00 +0100</lastBuildDate>
-    <ttl>10</ttl>
 
-    <!-- Meeting information used by the website -->
-    <imo:meetingTitle>III 12</imo:meetingTitle>
+    <lastBuildDate>
+      Mon, 13 Jul 2026 13:00:00 +0100
+    </lastBuildDate>
 
-    <imo:heroTitle>IMO Rooms and Locations</imo:heroTitle>
+    <ttl>60</ttl>
+
+    <imo:meetingTitle>
+      Sub-Committee on Implementation of IMO Instruments (III), 12th session
+    </imo:meetingTitle>
+
+    <imo:heroTitle>
+      IMO Rooms and Locations
+    </imo:heroTitle>
 
     <imo:heroDescription>
-      Current committee room locations for plenary, working groups,
+      Current room locations for plenary, working groups,
       drafting group and experts group for delegates and participants.
     </imo:heroDescription>
 
@@ -25,7 +41,6 @@
       III 12 – room location information
     </imo:noticeText>
 
-    <!-- Meeting-specific documents -->
     <imo:documentSectionTitle>
       III 12 documentation and hybrid meetings
     </imo:documentSectionTitle>
@@ -38,7 +53,6 @@
       https://docs.imo.org/Category.aspx?cid=643
     </imo:documentUrl>
 
-    <!-- Plenary timetable -->
     <imo:showTimetable>true</imo:showTimetable>
 
     <imo:timetableTitle>
@@ -69,52 +83,129 @@
       16:00 – 16:30
     </imo:afternoonBreak>
 
-    <!-- Current rooms -->
+    <!-- 1. Main Hall -->
     <item>
-      <title>Main Hall — III 12 Plenary | 20–24 July 2026 | Ground floor</title>
-      <link>https://meetingroomsimo.github.io/MeetingroomsIMO/</link>
-      <pubDate>Mon, 13 Jul 2026 13:00:00 +0100</pubDate>
-      <guid>imo-main-hall-iii-12-plenary</guid>
+      <title>
+        Main Hall — III 12 Plenary | 20–24 July 2026 | Ground floor | Format TBC
+      </title>
+
+      <link>
+        https://meetingroomsimo.github.io/MeetingroomsIMO/
+      </link>
+
+      <pubDate>
+        Mon, 13 Jul 2026 13:00:00 +0100
+      </pubDate>
+
+      <guid>
+        imo-main-hall-iii-12-plenary
+      </guid>
+
       <category>Meeting room</category>
     </item>
 
+    <!-- 2. Committee Room 9 -->
     <item>
-      <title>Committee Room 3–5 — Drafting Group on Analysis of Consolidated Audit Summary Reports (DG) | 20–24 July 2026 | First floor</title>
-      <link>https://meetingroomsimo.github.io/MeetingroomsIMO/</link>
-      <pubDate>Mon, 13 Jul 2026 13:00:00 +0100</pubDate>
-      <guid>imo-committee-room-3-5-iii-12-dg</guid>
+      <title>
+        Committee Room 9 — Working Group on Survey Guidelines under the HSSC, the Non-exhaustive list of obligations, and Guidance on the ISM Code (WG 3) | 20–24 July 2026 | Second floor | Hybrid
+      </title>
+
+      <link>
+        https://meetingroomsimo.github.io/MeetingroomsIMO/
+      </link>
+
+      <pubDate>
+        Mon, 13 Jul 2026 13:00:00 +0100
+      </pubDate>
+
+      <guid>
+        imo-committee-room-9-iii-12-wg3
+      </guid>
+
       <category>Meeting room</category>
     </item>
 
+    <!-- 3. Committee Room 10 -->
     <item>
-      <title>Committee Room 6–8 — Experts Group on Fishing Vessels (EG) | 20–24 July 2026 | First floor</title>
-      <link>https://meetingroomsimo.github.io/MeetingroomsIMO/</link>
-      <pubDate>Mon, 13 Jul 2026 13:00:00 +0100</pubDate>
-      <guid>imo-committee-room-6-8-iii-12-eg</guid>
+      <title>
+        Committee Room 10 — Working Group on Port State Control (WG 2) | 20–24 July 2026 | Second floor | Hybrid
+      </title>
+
+      <link>
+        https://meetingroomsimo.github.io/MeetingroomsIMO/
+      </link>
+
+      <pubDate>
+        Mon, 13 Jul 2026 13:00:00 +0100
+      </pubDate>
+
+      <guid>
+        imo-committee-room-10-iii-12-wg2
+      </guid>
+
       <category>Meeting room</category>
     </item>
 
+    <!-- 4. Committee Room 11–13 -->
     <item>
-      <title>Committee Room 9 — Working Group on Casualty Investigation (WG 1) | 20–24 July 2026 | Second floor</title>
-      <link>https://meetingroomsimo.github.io/MeetingroomsIMO/</link>
-      <pubDate>Mon, 13 Jul 2026 13:00:00 +0100</pubDate>
-      <guid>imo-committee-room-9-iii-12-wg1</guid>
+      <title>
+        Committee Room 11–13 — Working Group on Casualty Investigation (WG 1) | 20–24 July 2026 | Second floor | Hybrid
+      </title>
+
+      <link>
+        https://meetingroomsimo.github.io/MeetingroomsIMO/
+      </link>
+
+      <pubDate>
+        Mon, 13 Jul 2026 13:00:00 +0100
+      </pubDate>
+
+      <guid>
+        imo-committee-room-11-13-iii-12-wg1
+      </guid>
+
       <category>Meeting room</category>
     </item>
 
+    <!-- 5. Committee Room 3–5 -->
     <item>
-      <title>Committee Room 10 — Working Group on Port State Control (WG 2) | 20–24 July 2026 | Second floor</title>
-      <link>https://meetingroomsimo.github.io/MeetingroomsIMO/</link>
-      <pubDate>Mon, 13 Jul 2026 13:00:00 +0100</pubDate>
-      <guid>imo-committee-room-10-iii-12-wg2</guid>
+      <title>
+        Committee Room 3–5 — Drafting Group on Analysis of Consolidated Audit Summary Reports (DG 1) | 20–24 July 2026 | First floor | Format TBC
+      </title>
+
+      <link>
+        https://meetingroomsimo.github.io/MeetingroomsIMO/
+      </link>
+
+      <pubDate>
+        Mon, 13 Jul 2026 13:00:00 +0100
+      </pubDate>
+
+      <guid>
+        imo-committee-room-3-5-iii-12-dg1
+      </guid>
+
       <category>Meeting room</category>
     </item>
 
+    <!-- 6. Committee Room 6–8 -->
     <item>
-      <title>Committee Room 11–13 — Working Group on Survey Guidelines under the HSSC, the Non-exhaustive list of obligations, and Guidance on the ISM Code (WG 3) | 20–24 July 2026 | Second floor</title>
-      <link>https://meetingroomsimo.github.io/MeetingroomsIMO/</link>
-      <pubDate>Mon, 13 Jul 2026 13:00:00 +0100</pubDate>
-      <guid>imo-committee-room-11-13-iii-12-wg3</guid>
+      <title>
+        Committee Room 6–8 — Experts Group on Fishing Vessels (EG 1) | 20–24 July 2026 | First floor | Format TBC
+      </title>
+
+      <link>
+        https://meetingroomsimo.github.io/MeetingroomsIMO/
+      </link>
+
+      <pubDate>
+        Mon, 13 Jul 2026 13:00:00 +0100
+      </pubDate>
+
+      <guid>
+        imo-committee-room-6-8-iii-12-eg1
+      </guid>
+
       <category>Meeting room</category>
     </item>
 
