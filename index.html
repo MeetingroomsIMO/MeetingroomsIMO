@@ -115,7 +115,7 @@
 
     .hero-card {
       background: rgba(0, 58, 112, 0.34);
-      border: 1px solid rgba(255,255,255,0.2);
+      border: 1px solid rgba(255, 255, 255, 0.2);
       border-radius: 26px;
       padding: 28px;
       min-height: 190px;
@@ -141,9 +141,9 @@
       font-weight: 900;
     }
 
-    .hero p {
+    .hero-description {
       margin: 15px 0 0;
-      color: rgba(255,255,255,0.9);
+      color: rgba(255, 255, 255, 0.9);
       font-size: clamp(1.05rem, 2vw, 1.3rem);
       max-width: 720px;
       font-weight: 400;
@@ -312,31 +312,26 @@
     .floor-ground {
       background: #EAF4F8;
       border-color: #B8DCE8;
-      color: var(--imo-navy);
     }
 
     .floor-first {
       background: #E8F6EF;
       border-color: #B7DFC8;
-      color: var(--imo-navy);
     }
 
     .floor-second {
       background: #FAF4E6;
       border-color: #EAD8A7;
-      color: var(--imo-navy);
     }
 
     .floor-third {
       background: #F3EAF8;
       border-color: #D8BDE8;
-      color: var(--imo-navy);
     }
 
     .floor-other {
       background: #F1F5F9;
       border-color: #CBD5E1;
-      color: var(--imo-navy);
     }
 
     .delegate-info {
@@ -344,6 +339,10 @@
       display: grid;
       grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
       gap: 16px;
+    }
+
+    .delegate-info.single-column {
+      grid-template-columns: 1fr;
     }
 
     .info-card,
@@ -467,19 +466,23 @@
     }
 
     .status {
-      color: rgba(255,255,255,0.88);
+      color: rgba(255, 255, 255, 0.88);
       margin-top: 14px;
       font-size: 0.92rem;
       font-weight: 400;
     }
 
     footer {
-      border-top: 1px solid rgba(255,255,255,0.2);
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
       text-align: center;
-      color: rgba(255,255,255,0.82);
+      color: rgba(255, 255, 255, 0.82);
       font-size: 0.9rem;
       padding: 18px;
       background: rgba(0, 58, 112, 0.72);
+    }
+
+    [hidden] {
+      display: none !important;
     }
 
     @media (max-width: 760px) {
@@ -531,7 +534,6 @@
         max-width: 100%;
         margin-left: auto;
         margin-right: auto;
-        justify-self: center;
       }
 
       .qr-box img {
@@ -542,10 +544,7 @@
         padding: 10px 12px 34px;
       }
 
-      .notice {
-        width: 100%;
-      }
-
+      .notice,
       .actions {
         width: 100%;
       }
@@ -569,7 +568,8 @@
         font-size: 1.45rem;
       }
 
-      .delegate-info {
+      .delegate-info,
+      .delegate-info.single-column {
         grid-template-columns: 1fr;
         gap: 12px;
         margin-top: 22px;
@@ -602,38 +602,53 @@
   <header class="top-bar">
     <div class="top-bar-inner">
       <div class="brand">
-        <img src="imo-logo.png" alt="IMO logo"
-             onerror="this.style.display='none'; document.querySelector('.logo-fallback').style.display='flex';">
+        <img
+          src="imo-logo.png"
+          alt="IMO logo"
+          onerror="this.style.display='none'; document.querySelector('.logo-fallback').style.display='flex';"
+        >
         <div class="logo-fallback">IMO</div>
       </div>
 
-      <a class="official-link" href="https://www.imo.org/" target="_blank" rel="noopener">imo.org</a>
+      <a
+        class="official-link"
+        href="https://www.imo.org/"
+        target="_blank"
+        rel="noopener"
+      >
+        imo.org
+      </a>
     </div>
   </header>
 
   <section class="hero">
     <div class="hero-card">
       <div class="accent-line"></div>
-      <p class="meeting-title">Council, 137th Session</p>
-      <h1>IMO Rooms and Locations</h1>
-      <p>Current committee room locations for plenary and working groups for delegates and participants.</p>
+      <p class="meeting-title" id="meetingTitle">Loading meeting information...</p>
+      <h1 id="heroTitle">IMO Rooms and Locations</h1>
+      <p class="hero-description" id="heroDescription">
+        Current committee room locations for delegates and participants.
+      </p>
     </div>
 
     <div class="qr-box">
-      <img src="IMO_meeting_rooms_QR.png" alt="QR code for IMO Rooms and Locations website">
+      <img
+        src="IMO_meeting_rooms_QR.png"
+        alt="QR code for IMO Rooms and Locations website"
+      >
       <p>Scan to open on your phone</p>
     </div>
   </section>
 
   <main>
     <div class="top-row">
-      <div class="notice" id="notice">
-        Council, 137th Session – room location information
+      <div class="notice">
+        <span id="noticeText">Loading room information...</span>
         <small id="updated">Loading latest room list...</small>
       </div>
 
       <div class="actions">
-        <button onclick="sharePage()">Share page</button>
+        <button type="button" onclick="sharePage()">Share page</button>
       </div>
     </div>
 
@@ -643,55 +658,91 @@
       </article>
     </section>
 
-    <section class="delegate-info" aria-label="Delegate information">
-      <article class="info-card">
-        <h2>Plenary timetable</h2>
-        <p class="schedule-note">Indicative timetable for plenary sessions only.</p>
+    <section class="delegate-info" id="delegateInfo" aria-label="Delegate information">
+      <article class="info-card" id="timetableCard">
+        <h2 id="timetableTitle">Plenary timetable</h2>
+        <p class="schedule-note" id="timetableNote">
+          Indicative timetable for plenary sessions only.
+        </p>
 
-        <div class="schedule-row">
+        <div class="schedule-row" id="morningRow">
           <div class="schedule-label">Morning session</div>
-          <div class="schedule-time">09:30 – 12:30<br>Coffee break: 11:00 – 11:30</div>
+          <div class="schedule-time">
+            <span id="morningSession"></span>
+            <br>
+            <span id="morningBreak"></span>
+          </div>
         </div>
 
-        <div class="schedule-row">
+        <div class="schedule-row" id="lunchRow">
           <div class="schedule-label">Lunch break</div>
-          <div class="schedule-time">12:30 – 14:30</div>
+          <div class="schedule-time" id="lunchBreak"></div>
         </div>
 
-        <div class="schedule-row">
+        <div class="schedule-row" id="afternoonRow">
           <div class="schedule-label">Afternoon session</div>
-          <div class="schedule-time">14:30 – 17:30<br>Coffee break: 16:00 – 16:30</div>
+          <div class="schedule-time">
+            <span id="afternoonSession"></span>
+            <br>
+            <span id="afternoonBreak"></span>
+          </div>
         </div>
       </article>
 
       <article class="info-card">
-        <h2>Council documentation and hybrid meetings</h2>
+        <h2 id="documentationTitle">Documentation and hybrid meetings</h2>
 
         <div class="doc-links">
-          <a class="doc-link" href="https://docs.imo.org/Category.aspx?cid=36" target="_blank" rel="noopener">
-            Access Council documents
+          <a
+            class="doc-link"
+            id="meetingDocumentsLink"
+            href="#"
+            target="_blank"
+            rel="noopener"
+          >
+            Access meeting documents
           </a>
 
-          <a class="doc-link" href="https://docs.imo.org/Shared/Download.aspx?did=138130" target="_blank" rel="noopener">
+          <a
+            class="doc-link"
+            href="https://docs.imo.org/Shared/Download.aspx?did=138130"
+            target="_blank"
+            rel="noopener"
+          >
             CL No. 4623 – Information on Hybrid Meetings
           </a>
 
-          <a class="doc-link" href="https://docs.imo.org/Shared/Download.aspx?did=138212" target="_blank" rel="noopener">
+          <a
+            class="doc-link"
+            href="https://docs.imo.org/Shared/Download.aspx?did=138212"
+            target="_blank"
+            rel="noopener"
+          >
             CL No. 4627 – Guidance on the use of hybrid meeting capability
           </a>
 
-          <a class="doc-link" href="https://docs.imo.org/Shared/Download.aspx?did=138313" target="_blank" rel="noopener">
+          <a
+            class="doc-link"
+            href="https://docs.imo.org/Shared/Download.aspx?did=138313"
+            target="_blank"
+            rel="noopener"
+          >
             Best practices to attend IMO's hybrid meetings
           </a>
 
-          <a class="doc-link" href="https://docs.imo.org/Shared/Download.aspx?did=138312" target="_blank" rel="noopener">
+          <a
+            class="doc-link"
+            href="https://docs.imo.org/Shared/Download.aspx?did=138312"
+            target="_blank"
+            rel="noopener"
+          >
             ZOOM – Guide to meetings
           </a>
         </div>
 
         <p class="info-note">
-          Remote-active participants should use only their personal joining link received by email.
-          Do not share Zoom links.
+          Remote-active participants should use only their personal joining link
+          received by email. Do not share Zoom links.
         </p>
       </article>
     </section>
@@ -702,18 +753,30 @@
         <p>Help us improve this page for delegates and participants.</p>
 
         <div class="feedback-actions">
-          <a class="feedback-button" href="https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=OHM9rD1gZ0WZHcirS4nCE3d747um00BOlPndx0UGgehUMzhSVFI4REtHNVJFNENRSEdPTE9UTDBSTS4u" target="_blank" rel="noopener">
+          <a
+            class="feedback-button"
+            href="https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=OHM9rD1gZ0WZHcirS4nCE3d747um00BOlPndx0UGgehUMzhSVFI4REtHNVJFNENRSEdPTE9UTDBSTS4u"
+            target="_blank"
+            rel="noopener"
+          >
             Was this information useful?
           </a>
 
-          <a class="feedback-button secondary" href="https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=OHM9rD1gZ0WZHcirS4nCE3d747um00BOlPndx0UGgehUMzhSVFI4REtHNVJFNENRSEdPTE9UTDBSTS4u" target="_blank" rel="noopener">
+          <a
+            class="feedback-button secondary"
+            href="https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=OHM9rD1gZ0WZHcirS4nCE3d747um00BOlPndx0UGgehUMzhSVFI4REtHNVJFNENRSEdPTE9UTDBSTS4u"
+            target="_blank"
+            rel="noopener"
+          >
             Suggest an improvement
           </a>
         </div>
       </div>
     </section>
 
-    <p class="status" id="status">Information loads from rss.xml and refreshes every hour.</p>
+    <p class="status" id="status">
+      Information loads from rss.xml and refreshes every hour.
+    </p>
   </main>
 
   <footer>
@@ -723,24 +786,16 @@
   <script>
     const pageUrl = "https://meetingroomsimo.github.io/MeetingroomsIMO/";
 
-    async function sharePage() {
-      if (navigator.share) {
-        try {
-          await navigator.share({
-            title: "Council, 137th Session – IMO Committee Rooms and Locations",
-            text: "Current IMO committee room locations for Council, 137th Session",
-            url: pageUrl
-          });
-          return;
-        } catch (error) {}
+    let currentMeetingTitle = "IMO Committee Rooms and Locations";
+
+    function getNamespaceValue(xml, localName, fallback = "") {
+      const node = xml.getElementsByTagNameNS("*", localName)[0];
+
+      if (!node || !node.textContent) {
+        return fallback;
       }
 
-      try {
-        await navigator.clipboard.writeText(pageUrl);
-        alert("Website link copied.");
-      } catch (error) {
-        alert(pageUrl);
-      }
+      return node.textContent.trim() || fallback;
     }
 
     function refreshTimeText() {
@@ -754,6 +809,35 @@
       });
     }
 
+    async function sharePage() {
+      const shareTitle =
+        currentMeetingTitle + " – IMO Committee Rooms and Locations";
+
+      const shareText =
+        "Current IMO committee room locations for " + currentMeetingTitle;
+
+      if (navigator.share) {
+        try {
+          await navigator.share({
+            title: shareTitle,
+            text: shareText,
+            url: pageUrl
+          });
+
+          return;
+        } catch (error) {
+          /* User may have cancelled sharing. */
+        }
+      }
+
+      try {
+        await navigator.clipboard.writeText(pageUrl);
+        alert("Website link copied.");
+      } catch (error) {
+        alert(pageUrl);
+      }
+    }
+
     function createTextElement(className, text) {
       const element = document.createElement("div");
       element.className = className;
@@ -761,7 +845,7 @@
       return element;
     }
 
-    function createTag(text, extraClass) {
+    function createTag(text, extraClass = "") {
       const tag = document.createElement("span");
       tag.className = extraClass ? "tag " + extraClass : "tag";
       tag.textContent = text;
@@ -792,21 +876,23 @@
 
     function createCard(title) {
       const parts = title.split("|").map(part => part.trim());
-      const roomLocation = parts[0] || "";
+
+      const roomAndUse = parts[0] || "";
       const date = parts[1] || "";
       const floor = parts[2] || "";
 
-      const splitRoom = roomLocation.split("—").map(part => part.trim());
-      const room = splitRoom[0] || "Room";
-      const location = splitRoom[1] || "";
+      const roomParts = roomAndUse.split("—").map(part => part.trim());
+
+      const room = roomParts[0] || "Room";
+      const use = roomParts.slice(1).join(" — ") || "";
 
       const card = document.createElement("article");
       card.className = "card";
 
       card.appendChild(createTextElement("room", room));
 
-      if (location) {
-        card.appendChild(createTextElement("meeting", location));
+      if (use) {
+        card.appendChild(createTextElement("meeting", use));
       }
 
       const details = document.createElement("div");
@@ -825,48 +911,223 @@
       return card;
     }
 
+    function updateMeetingInformation(xml) {
+      const meetingTitle = getNamespaceValue(
+        xml,
+        "meetingTitle",
+        "Current IMO meeting"
+      );
+
+      const heroTitle = getNamespaceValue(
+        xml,
+        "heroTitle",
+        "IMO Rooms and Locations"
+      );
+
+      const heroDescription = getNamespaceValue(
+        xml,
+        "heroDescription",
+        "Current committee room locations for delegates and participants."
+      );
+
+      const noticeText = getNamespaceValue(
+        xml,
+        "noticeText",
+        meetingTitle + " – room location information"
+      );
+
+      const documentationTitle = getNamespaceValue(
+        xml,
+        "documentSectionTitle",
+        meetingTitle + " documentation and hybrid meetings"
+      );
+
+      const documentLabel = getNamespaceValue(
+        xml,
+        "documentLabel",
+        "Access " + meetingTitle + " documents"
+      );
+
+      const documentUrl = getNamespaceValue(xml, "documentUrl", "");
+
+      currentMeetingTitle = meetingTitle;
+
+      document.title =
+        meetingTitle + " – IMO Committee Rooms and Locations";
+
+      document.getElementById("meetingTitle").textContent = meetingTitle;
+      document.getElementById("heroTitle").textContent = heroTitle;
+      document.getElementById("heroDescription").textContent = heroDescription;
+      document.getElementById("noticeText").textContent = noticeText;
+      document.getElementById("documentationTitle").textContent =
+        documentationTitle;
+
+      const meetingDocumentsLink =
+        document.getElementById("meetingDocumentsLink");
+
+      if (documentUrl) {
+        meetingDocumentsLink.href = documentUrl;
+        meetingDocumentsLink.textContent = documentLabel;
+        meetingDocumentsLink.hidden = false;
+      } else {
+        meetingDocumentsLink.hidden = true;
+      }
+    }
+
+    function updateTimetable(xml) {
+      const showTimetable = getNamespaceValue(
+        xml,
+        "showTimetable",
+        "false"
+      ).toLowerCase() === "true";
+
+      const timetableCard = document.getElementById("timetableCard");
+      const delegateInfo = document.getElementById("delegateInfo");
+
+      if (!showTimetable) {
+        timetableCard.hidden = true;
+        delegateInfo.classList.add("single-column");
+        return;
+      }
+
+      timetableCard.hidden = false;
+      delegateInfo.classList.remove("single-column");
+
+      document.getElementById("timetableTitle").textContent =
+        getNamespaceValue(xml, "timetableTitle", "Plenary timetable");
+
+      document.getElementById("timetableNote").textContent =
+        getNamespaceValue(
+          xml,
+          "timetableNote",
+          "Indicative timetable for plenary sessions only."
+        );
+
+      const morningSession =
+        getNamespaceValue(xml, "morningSession", "");
+
+      const morningBreak =
+        getNamespaceValue(xml, "morningBreak", "");
+
+      const lunchBreak =
+        getNamespaceValue(xml, "lunchBreak", "");
+
+      const afternoonSession =
+        getNamespaceValue(xml, "afternoonSession", "");
+
+      const afternoonBreak =
+        getNamespaceValue(xml, "afternoonBreak", "");
+
+      document.getElementById("morningSession").textContent =
+        morningSession;
+
+      document.getElementById("morningBreak").textContent =
+        morningBreak ? "Coffee break: " + morningBreak : "";
+
+      document.getElementById("lunchBreak").textContent =
+        lunchBreak;
+
+      document.getElementById("afternoonSession").textContent =
+        afternoonSession;
+
+      document.getElementById("afternoonBreak").textContent =
+        afternoonBreak ? "Coffee break: " + afternoonBreak : "";
+
+      document.getElementById("morningRow").hidden =
+        !morningSession && !morningBreak;
+
+      document.getElementById("lunchRow").hidden =
+        !lunchBreak;
+
+      document.getElementById("afternoonRow").hidden =
+        !afternoonSession && !afternoonBreak;
+    }
+
     async function loadRooms() {
       const container = document.getElementById("rooms");
       const updated = document.getElementById("updated");
       const status = document.getElementById("status");
 
       try {
-        const response = await fetch("rss.xml?cache=" + Date.now());
+        const response = await fetch(
+          "rss.xml?cache=" + Date.now(),
+          { cache: "no-store" }
+        );
+
+        if (!response.ok) {
+          throw new Error("Could not load rss.xml");
+        }
+
         const text = await response.text();
 
         const parser = new DOMParser();
         const xml = parser.parseFromString(text, "application/xml");
+
+        const parserError = xml.querySelector("parsererror");
+
+        if (parserError) {
+          throw new Error("rss.xml contains invalid XML");
+        }
+
+        updateMeetingInformation(xml);
+        updateTimetable(xml);
+
         const items = Array.from(xml.querySelectorAll("item"));
 
-        updated.textContent = "Last refreshed: " + refreshTimeText();
+        updated.textContent =
+          "Last refreshed: " + refreshTimeText();
 
         container.innerHTML = "";
 
         if (items.length === 0) {
           const emptyCard = document.createElement("article");
           emptyCard.className = "card";
-          emptyCard.appendChild(createTextElement("room", "No rooms currently listed"));
+          emptyCard.appendChild(
+            createTextElement("room", "No rooms currently listed")
+          );
           container.appendChild(emptyCard);
-          status.textContent = "No room items found in rss.xml.";
+
+          status.textContent =
+            "No room items found in rss.xml.";
+
           return;
         }
 
         items.forEach(item => {
-          const title = item.querySelector("title")?.textContent || "";
-          container.appendChild(createCard(title));
+          const title =
+            item.querySelector("title")?.textContent?.trim() || "";
+
+          if (title) {
+            container.appendChild(createCard(title));
+          }
         });
 
-        status.textContent = "Information loads from rss.xml and refreshes every hour.";
+        status.textContent =
+          "Information loads from rss.xml and refreshes every hour.";
 
       } catch (error) {
         container.innerHTML = "";
+
         const errorCard = document.createElement("article");
         errorCard.className = "card";
-        errorCard.appendChild(createTextElement("room", "Unable to load rooms"));
-        errorCard.appendChild(createTextElement("meeting", "Please check rss.xml."));
+
+        errorCard.appendChild(
+          createTextElement("room", "Unable to load rooms")
+        );
+
+        errorCard.appendChild(
+          createTextElement("meeting", "Please check rss.xml.")
+        );
+
         container.appendChild(errorCard);
-        status.textContent = "The page could not read rss.xml.";
-        updated.textContent = "Last refresh failed: " + refreshTimeText();
+
+        status.textContent =
+          "The page could not read rss.xml.";
+
+        updated.textContent =
+          "Last refresh failed: " + refreshTimeText();
+
+        console.error(error);
       }
     }
 
