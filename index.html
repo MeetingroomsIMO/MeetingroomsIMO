@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html lang="en-GB">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>IMO Committee Rooms and Locations</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap"
+    rel="stylesheet"
+  >
 
   <style>
     :root {
@@ -16,7 +19,7 @@
       --imo-ocean: #00A9CE;
       --imo-gold: #D7A83B;
 
-      --card-bg: rgba(255, 255, 255, 0.94);
+      --card-bg: rgba(255, 255, 255, 0.96);
       --text-main: #17212B;
       --border: #D7E2EA;
       --shadow: 0 12px 30px rgba(0, 58, 112, 0.22);
@@ -27,8 +30,8 @@
     }
 
     body {
-      margin: 0;
       min-height: 100vh;
+      margin: 0;
       color: var(--text-main);
       font-family: "Roboto", Arial, Helvetica, sans-serif;
       background:
@@ -68,7 +71,7 @@
       width: clamp(220px, 28vw, 355px);
       max-height: 99px;
       object-fit: contain;
-      background: white;
+      background: #ffffff;
     }
 
     .logo-fallback {
@@ -79,7 +82,7 @@
       width: 95px;
       height: 95px;
       color: var(--imo-navy);
-      background: white;
+      background: #ffffff;
       border: 2px solid var(--imo-navy);
       border-radius: 50%;
       font-size: 1.45rem;
@@ -91,7 +94,7 @@
       flex: 0 0 auto;
       padding: 9px 13px;
       color: var(--imo-navy);
-      background: white;
+      background: #ffffff;
       border: 1px solid var(--imo-navy);
       border-radius: 999px;
       font-size: 0.9rem;
@@ -108,7 +111,7 @@
       margin: 0 auto;
       padding: 46px 18px 30px;
       gap: 26px;
-      color: white;
+      color: #ffffff;
     }
 
     .hero-card {
@@ -132,7 +135,7 @@
 
     .meeting-title {
       margin: 0 0 12px;
-      color: white;
+      color: #ffffff;
       font-size: clamp(1.3rem, 2.4vw, 1.95rem);
       line-height: 1.2;
       font-weight: 900;
@@ -140,7 +143,7 @@
 
     .hero h1 {
       margin: 0;
-      color: white;
+      color: #ffffff;
       font-size: clamp(2.2rem, 5vw, 4.2rem);
       line-height: 1.02;
       font-weight: 900;
@@ -165,7 +168,7 @@
       min-height: 230px;
       padding: 12px;
       color: var(--imo-navy);
-      background: white;
+      background: #ffffff;
       border: 1px solid var(--border);
       border-radius: 24px;
       box-shadow: var(--shadow);
@@ -211,7 +214,7 @@
       min-width: 280px;
       padding: 14px 18px;
       color: var(--imo-navy);
-      background: rgba(234, 244, 248, 0.95);
+      background: rgba(234, 244, 248, 0.97);
       border: 1px solid var(--border);
       border-left: 7px solid var(--imo-ocean);
       border-radius: 16px;
@@ -236,7 +239,7 @@
 
     button {
       padding: 11px 15px;
-      color: white;
+      color: #ffffff;
       background: var(--imo-navy);
       border: 1px solid var(--border);
       border-radius: 999px;
@@ -250,11 +253,13 @@
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(285px, 1fr));
+      align-items: stretch;
       gap: 16px;
     }
 
     .card {
       position: relative;
+      height: 100%;
       overflow: hidden;
       padding: 21px;
       background: var(--card-bg);
@@ -273,7 +278,7 @@
 
     .room {
       display: inline-block;
-      margin-bottom: 8px;
+      margin-bottom: 10px;
       padding: 0 0 8px 4px;
       color: var(--imo-navy);
       border-bottom: 3px solid var(--imo-ocean);
@@ -282,10 +287,12 @@
     }
 
     .meeting {
-      margin-bottom: 15px;
+      min-height: 3.3em;
+      margin-bottom: 16px;
       padding-left: 4px;
       color: var(--imo-navy);
-      font-size: 1.1rem;
+      font-size: 1.03rem;
+      line-height: 1.35;
       font-weight: 800;
     }
 
@@ -298,63 +305,69 @@
 
     .tag {
       padding: 8px 13px;
-      color: var(--imo-navy);
-      background: #EDF8FC;
-      border: 2px solid #AFCFD9;
+      border: 2px solid;
       border-radius: 999px;
-      box-shadow: 0 3px 7px rgba(0, 58, 112, 0.12);
+      box-shadow: 0 3px 8px rgba(0, 58, 112, 0.16);
       font-size: 0.92rem;
       font-weight: 900;
     }
 
-    /* Stronger floor colours */
+    /* Distinct floor colours */
 
     .floor-ground {
-      background: #CFEAF8;
-      border-color: #2E8BB8;
+      color: #ffffff;
+      background: #1565C0;
+      border-color: #0D47A1;
     }
 
     .floor-first {
-      background: #D4F2DF;
-      border-color: #32965D;
+      color: #ffffff;
+      background: #2E7D32;
+      border-color: #1B5E20;
     }
 
     .floor-second {
-      background: #FFE8AE;
-      border-color: #D28D00;
+      color: #3E2A00;
+      background: #F9A825;
+      border-color: #E08B00;
     }
 
     .floor-third {
-      background: #E8D9F7;
-      border-color: #8252B1;
+      color: #ffffff;
+      background: #6A1B9A;
+      border-color: #4A148C;
     }
 
     .floor-other {
-      background: #E7EDF2;
-      border-color: #718397;
+      color: #ffffff;
+      background: #546E7A;
+      border-color: #37474F;
     }
 
+    /* Meeting-format colours */
+
     .format-hybrid {
-      color: #004F58;
-      background: #CDEFF2;
-      border-color: #168B98;
+      color: #ffffff;
+      background: #00838F;
+      border-color: #006064;
     }
 
     .format-tbc {
-      color: #6B4B00;
-      background: #FFF0C7;
-      border-color: #C88B00;
+      color: #ffffff;
+      background: #EF6C00;
+      border-color: #BF4F00;
     }
 
     .format-in-person {
-      color: #4B2B73;
-      background: #E8DDF5;
-      border-color: #7E52A8;
+      color: #ffffff;
+      background: #5E35B1;
+      border-color: #4527A0;
     }
 
     .format-other {
-      background: #E7EDF2;
-      border-color: #718397;
+      color: #ffffff;
+      background: #607D8B;
+      border-color: #455A64;
     }
 
     .delegate-info {
@@ -372,7 +385,7 @@
     .feedback-card {
       padding: 21px;
       color: var(--imo-navy);
-      background: rgba(255, 255, 255, 0.94);
+      background: rgba(255, 255, 255, 0.96);
       border: 1px solid var(--border);
       border-radius: 20px;
       box-shadow: var(--shadow);
@@ -466,7 +479,7 @@
     .feedback-button {
       display: inline-block;
       padding: 11px 15px;
-      color: white;
+      color: #ffffff;
       background: var(--imo-navy);
       border: 1px solid var(--imo-navy);
       border-radius: 999px;
@@ -587,6 +600,10 @@
 
       .room {
         font-size: 1.45rem;
+      }
+
+      .meeting {
+        min-height: auto;
       }
 
       .delegate-info,
@@ -881,8 +898,7 @@
     }
 
     function createTextElement(className, text) {
-      const element =
-        document.createElement("div");
+      const element = document.createElement("div");
 
       element.className = className;
       element.textContent = text;
@@ -891,8 +907,7 @@
     }
 
     function createTag(text, extraClass = "") {
-      const tag =
-        document.createElement("span");
+      const tag = document.createElement("span");
 
       tag.className =
         extraClass ? "tag " + extraClass : "tag";
@@ -950,20 +965,8 @@
         title.split("|").map(part => part.trim());
 
       const roomAndUse = parts[0] || "";
-
-      /*
-        The RSS retains the meeting date for the RSS display,
-        but the website deliberately does not show a date bubble.
-      */
-      const floor =
-        parts.length >= 4
-          ? parts[2]
-          : parts[1] || "";
-
-      const format =
-        parts.length >= 4
-          ? parts[3]
-          : parts[2] || "";
+      const floor = parts[2] || "";
+      const format = parts[3] || "";
 
       const roomParts =
         roomAndUse.split("—").map(part => part.trim());
@@ -993,6 +996,11 @@
         document.createElement("div");
 
       details.className = "details";
+
+      /*
+        The meeting date remains in rss.xml for the RSS display,
+        but it is not shown as a room-card bubble.
+      */
 
       if (floor) {
         details.appendChild(
@@ -1043,25 +1051,21 @@
         getNamespaceValue(
           xml,
           "noticeText",
-          meetingTitle +
-            " – room location information"
+          meetingTitle + " – room location information"
         );
 
       const documentationTitle =
         getNamespaceValue(
           xml,
           "documentSectionTitle",
-          meetingTitle +
-            " documentation and hybrid meetings"
+          meetingTitle + " documentation and hybrid meetings"
         );
 
       const documentLabel =
         getNamespaceValue(
           xml,
           "documentLabel",
-          "Access " +
-            meetingTitle +
-            " documents"
+          "Access " + meetingTitle + " documents"
         );
 
       const documentUrl =
@@ -1104,8 +1108,7 @@
 
       if (documentUrl) {
         meetingDocumentsLink.href = documentUrl;
-        meetingDocumentsLink.textContent =
-          documentLabel;
+        meetingDocumentsLink.textContent = documentLabel;
         meetingDocumentsLink.hidden = false;
       } else {
         meetingDocumentsLink.hidden = true;
@@ -1121,27 +1124,19 @@
         ).toLowerCase() === "true";
 
       const timetableCard =
-        document.getElementById(
-          "timetableCard"
-        );
+        document.getElementById("timetableCard");
 
       const delegateInfo =
-        document.getElementById(
-          "delegateInfo"
-        );
+        document.getElementById("delegateInfo");
 
       if (!showTimetable) {
         timetableCard.hidden = true;
-        delegateInfo.classList.add(
-          "single-column"
-        );
+        delegateInfo.classList.add("single-column");
         return;
       }
 
       timetableCard.hidden = false;
-      delegateInfo.classList.remove(
-        "single-column"
-      );
+      delegateInfo.classList.remove("single-column");
 
       document.getElementById(
         "timetableTitle"
@@ -1162,39 +1157,19 @@
         );
 
       const morningSession =
-        getNamespaceValue(
-          xml,
-          "morningSession",
-          ""
-        );
+        getNamespaceValue(xml, "morningSession", "");
 
       const morningBreak =
-        getNamespaceValue(
-          xml,
-          "morningBreak",
-          ""
-        );
+        getNamespaceValue(xml, "morningBreak", "");
 
       const lunchBreak =
-        getNamespaceValue(
-          xml,
-          "lunchBreak",
-          ""
-        );
+        getNamespaceValue(xml, "lunchBreak", "");
 
       const afternoonSession =
-        getNamespaceValue(
-          xml,
-          "afternoonSession",
-          ""
-        );
+        getNamespaceValue(xml, "afternoonSession", "");
 
       const afternoonBreak =
-        getNamespaceValue(
-          xml,
-          "afternoonBreak",
-          ""
-        );
+        getNamespaceValue(xml, "afternoonBreak", "");
 
       document.getElementById(
         "morningSession"
@@ -1235,8 +1210,7 @@
       document.getElementById(
         "afternoonRow"
       ).hidden =
-        !afternoonSession &&
-        !afternoonBreak;
+        !afternoonSession && !afternoonBreak;
     }
 
     async function loadRooms() {
@@ -1256,9 +1230,7 @@
         );
 
         if (!response.ok) {
-          throw new Error(
-            "Could not load rss.xml"
-          );
+          throw new Error("Could not load rss.xml");
         }
 
         const text =
@@ -1274,9 +1246,7 @@
           );
 
         if (xml.querySelector("parsererror")) {
-          throw new Error(
-            "rss.xml contains invalid XML"
-          );
+          throw new Error("rss.xml contains invalid XML");
         }
 
         updateMeetingInformation(xml);
@@ -1288,8 +1258,7 @@
           );
 
         updated.textContent =
-          "Last refreshed: " +
-          refreshTimeText();
+          "Last refreshed: " + refreshTimeText();
 
         container.innerHTML = "";
 
@@ -1306,9 +1275,7 @@
             )
           );
 
-          container.appendChild(
-            emptyCard
-          );
+          container.appendChild(emptyCard);
 
           status.textContent =
             "No room items found in rss.xml.";
@@ -1362,19 +1329,14 @@
           "The page could not read rss.xml.";
 
         updated.textContent =
-          "Last refresh failed: " +
-          refreshTimeText();
+          "Last refresh failed: " + refreshTimeText();
 
         console.error(error);
       }
     }
 
     loadRooms();
-
-    setInterval(
-      loadRooms,
-      3600000
-    );
+    setInterval(loadRooms, 3600000);
   </script>
 </body>
 </html>
