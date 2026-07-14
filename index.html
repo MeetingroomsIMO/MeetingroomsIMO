@@ -3,8 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>IMO Committee Rooms and Locations</title>
+  <title>IMO Meeting Rooms and Locations</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,11 +17,11 @@
       --imo-navy: #003A70;
       --imo-ocean: #00A9CE;
       --imo-gold: #D7A83B;
-
-      --card-bg: rgba(255, 255, 255, 0.96);
+      --card-bg: rgba(255, 255, 255, 0.97);
+      --muted-bg: rgba(237, 244, 248, 0.98);
       --text-main: #17212B;
       --border: #D7E2EA;
-      --shadow: 0 12px 30px rgba(0, 58, 112, 0.22);
+      --shadow: 0 12px 30px rgba(0, 58, 112, 0.2);
     }
 
     * {
@@ -45,7 +44,7 @@
       width: 100%;
       color: var(--imo-navy);
       background: #ffffff;
-      box-shadow: 0 14px 28px rgba(0, 35, 70, 0.28);
+      box-shadow: 0 12px 26px rgba(0, 35, 70, 0.26);
     }
 
     .top-bar-inner {
@@ -53,23 +52,22 @@
       align-items: center;
       justify-content: space-between;
       max-width: 1180px;
-      min-height: 118px;
+      min-height: 108px;
       margin: 0 auto;
-      padding: 18px;
+      padding: 16px 18px;
       gap: 18px;
     }
 
     .brand {
       display: flex;
       align-items: center;
-      justify-content: flex-start;
       min-width: 0;
     }
 
     .brand img {
       display: block;
-      width: clamp(220px, 28vw, 355px);
-      max-height: 99px;
+      width: clamp(210px, 28vw, 340px);
+      max-height: 92px;
       object-fit: contain;
       background: #ffffff;
     }
@@ -79,13 +77,13 @@
       align-items: center;
       justify-content: center;
       flex: 0 0 auto;
-      width: 95px;
-      height: 95px;
+      width: 88px;
+      height: 88px;
       color: var(--imo-navy);
       background: #ffffff;
       border: 2px solid var(--imo-navy);
       border-radius: 50%;
-      font-size: 1.45rem;
+      font-size: 1.35rem;
       font-weight: 900;
       letter-spacing: 0.04em;
     }
@@ -105,12 +103,12 @@
 
     .hero {
       display: grid;
-      grid-template-columns: minmax(0, 1fr) 230px;
+      grid-template-columns: minmax(0, 1fr) 220px;
       align-items: stretch;
       max-width: 1180px;
       margin: 0 auto;
-      padding: 46px 18px 30px;
-      gap: 26px;
+      padding: 38px 18px 24px;
+      gap: 22px;
       color: #ffffff;
     }
 
@@ -118,11 +116,11 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
-      min-height: 190px;
-      padding: 28px;
+      min-height: 180px;
+      padding: 26px;
       background: rgba(0, 58, 112, 0.34);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      border-radius: 26px;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      border-radius: 24px;
     }
 
     .accent-line {
@@ -133,28 +131,28 @@
       border-radius: 999px;
     }
 
-    .meeting-title {
+    .hero-label {
       margin: 0 0 12px;
-      color: #ffffff;
-      font-size: clamp(1.3rem, 2.4vw, 1.95rem);
-      line-height: 1.2;
-      font-weight: 900;
+      color: rgba(255, 255, 255, 0.88);
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      line-height: 1.25;
+      font-weight: 800;
     }
 
     .hero h1 {
       margin: 0;
       color: #ffffff;
-      font-size: clamp(2.2rem, 5vw, 4.2rem);
+      font-size: clamp(2.15rem, 5vw, 4rem);
       line-height: 1.02;
       font-weight: 900;
       letter-spacing: -0.03em;
     }
 
     .hero-description {
-      max-width: 720px;
+      max-width: 740px;
       margin: 15px 0 0;
-      color: rgba(255, 255, 255, 0.9);
-      font-size: clamp(1.05rem, 2vw, 1.3rem);
+      color: rgba(255, 255, 255, 0.92);
+      font-size: clamp(1.02rem, 2vw, 1.25rem);
       font-weight: 400;
     }
 
@@ -164,13 +162,13 @@
       justify-content: center;
       align-self: stretch;
       justify-self: end;
-      width: 230px;
-      min-height: 230px;
+      width: 220px;
+      min-height: 220px;
       padding: 12px;
       color: var(--imo-navy);
       background: #ffffff;
       border: 1px solid var(--border);
-      border-radius: 24px;
+      border-radius: 22px;
       box-shadow: var(--shadow);
       text-align: center;
     }
@@ -178,7 +176,7 @@
     .qr-box img {
       display: block;
       width: 100%;
-      max-width: 188px;
+      max-width: 178px;
       height: auto;
       margin: 0 auto;
       object-fit: contain;
@@ -197,7 +195,7 @@
     main {
       max-width: 1180px;
       margin: 0 auto;
-      padding: 12px 18px 46px;
+      padding: 10px 18px 46px;
     }
 
     .top-row {
@@ -205,7 +203,7 @@
       align-items: stretch;
       justify-content: space-between;
       flex-wrap: wrap;
-      margin-bottom: 20px;
+      margin-bottom: 18px;
       gap: 12px;
     }
 
@@ -252,16 +250,16 @@
 
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(285px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(275px, 1fr));
       align-items: stretch;
-      gap: 16px;
+      gap: 15px;
     }
 
     .card {
       position: relative;
       height: 100%;
       overflow: hidden;
-      padding: 21px;
+      padding: 20px;
       background: var(--card-bg);
       border: 1px solid var(--border);
       border-radius: 20px;
@@ -276,23 +274,35 @@
       background: linear-gradient(180deg, var(--imo-ocean), var(--imo-navy));
     }
 
+    .card.no-assignment {
+      background: var(--muted-bg);
+    }
+
+    .card.no-assignment::before {
+      background: linear-gradient(180deg, #AEBCC7, var(--imo-navy));
+    }
+
     .room {
       display: inline-block;
-      margin-bottom: 12px;
+      margin-bottom: 13px;
       padding: 0 0 8px 4px;
       color: var(--imo-navy);
       border-bottom: 3px solid var(--imo-ocean);
-      font-size: 1.65rem;
+      font-size: 1.62rem;
       font-weight: 900;
     }
 
     .meeting {
-      min-height: 3.3em;
-      margin-bottom: 16px;
+      margin-bottom: 15px;
       padding-left: 4px;
       color: var(--imo-navy);
       font-size: 1.03rem;
-      line-height: 1.35;
+      line-height: 1.36;
+      font-weight: 800;
+    }
+
+    .meeting.empty-state {
+      color: #526675;
       font-weight: 800;
     }
 
@@ -300,8 +310,7 @@
       display: flex;
       align-items: baseline;
       flex-wrap: wrap;
-      min-height: 3.3em;
-      margin-bottom: 16px;
+      margin-bottom: 15px;
       padding-left: 4px;
       column-gap: 8px;
       row-gap: 4px;
@@ -311,8 +320,8 @@
     .group-code {
       flex: 0 0 auto;
       color: var(--imo-navy);
-      font-size: 1.42rem;
-      line-height: 1.1;
+      font-size: 1.38rem;
+      line-height: 1.12;
       font-weight: 900;
       white-space: nowrap;
     }
@@ -326,11 +335,28 @@
     }
 
     .group-name {
-      flex: 1 1 170px;
+      flex: 1 1 165px;
       color: var(--imo-navy);
-      font-size: 1.03rem;
+      font-size: 1.02rem;
+      line-height: 1.36;
+      font-weight: 800;
+    }
+
+    .room-note {
+      margin: 0 0 13px 4px;
+      padding: 10px 12px;
+      color: var(--imo-navy);
+      background: #FFF7DE;
+      border: 1px solid #F0CC63;
+      border-radius: 14px;
+      font-size: 0.94rem;
       line-height: 1.35;
       font-weight: 800;
+    }
+
+    .room-note::before {
+      content: "Note: ";
+      font-weight: 900;
     }
 
     .details {
@@ -348,8 +374,6 @@
       font-size: 0.92rem;
       font-weight: 900;
     }
-
-    /* Distinct floor colours */
 
     .floor-ground {
       color: #ffffff;
@@ -381,24 +405,11 @@
       border-color: #37474F;
     }
 
-    /* Neutral meeting-format bubble */
-
-    .format-neutral {
-      color: var(--imo-navy);
-      background: #ffffff;
-      border-color: #AEBCC7;
-      box-shadow: none;
-    }
-
     .delegate-info {
       display: grid;
       grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
       margin-top: 28px;
       gap: 16px;
-    }
-
-    .delegate-info.single-column {
-      grid-template-columns: 1fr;
     }
 
     .info-card,
@@ -419,36 +430,14 @@
       font-weight: 900;
     }
 
-    .schedule-note {
-      margin: -4px 0 12px;
+    .info-card p,
+    .feedback-card p {
+      margin: 0 0 14px;
       color: var(--imo-navy);
-      font-size: 0.9rem;
-      line-height: 1.4;
+      font-size: 0.96rem;
+      line-height: 1.45;
       font-weight: 500;
-      opacity: 0.86;
-    }
-
-    .schedule-row {
-      display: grid;
-      grid-template-columns: 150px 1fr;
-      padding: 9px 0;
-      border-top: 1px solid #D7E2EA;
-      gap: 10px;
-      font-size: 0.95rem;
-    }
-
-    .schedule-row:first-of-type {
-      border-top: 0;
-    }
-
-    .schedule-label {
-      color: var(--imo-navy);
-      font-weight: 900;
-    }
-
-    .schedule-time {
-      color: var(--imo-navy);
-      font-weight: 500;
+      opacity: 0.9;
     }
 
     .doc-links {
@@ -479,15 +468,6 @@
 
     .feedback-section {
       margin-top: 16px;
-    }
-
-    .feedback-card p {
-      margin: 0 0 14px;
-      color: var(--imo-navy);
-      font-size: 0.95rem;
-      line-height: 1.45;
-      font-weight: 500;
-      opacity: 0.86;
     }
 
     .feedback-actions {
@@ -544,21 +524,19 @@
     @media (max-width: 760px) {
       body {
         background:
-          linear-gradient(rgba(0, 58, 112, 0.82), rgba(0, 58, 112, 0.82)),
+          linear-gradient(rgba(0, 58, 112, 0.84), rgba(0, 58, 112, 0.84)),
           url("Background.jpg") center center / cover scroll no-repeat;
       }
 
       .top-bar-inner {
-        align-items: center;
-        justify-content: space-between;
         min-height: auto;
-        padding: 16px 22px;
+        padding: 14px 18px;
         gap: 12px;
       }
 
       .brand img {
-        width: min(62vw, 207px);
-        max-height: 68px;
+        width: min(60vw, 205px);
+        max-height: 64px;
       }
 
       .official-link {
@@ -574,24 +552,32 @@
 
       .hero {
         display: block;
-        padding: 26px 12px 16px;
+        padding: 22px 12px 14px;
       }
 
       .hero-card {
         min-height: auto;
-        padding: 22px;
-        border-radius: 20px;
+        padding: 20px;
+        border-radius: 19px;
+      }
+
+      .hero h1 {
+        font-size: clamp(2rem, 10vw, 3rem);
+      }
+
+      .hero-description {
+        font-size: 1rem;
       }
 
       .qr-box {
-        width: 210px;
-        min-height: 210px;
+        width: 190px;
+        min-height: 190px;
         max-width: 100%;
-        margin: 18px auto 0;
+        margin: 16px auto 0;
       }
 
       .qr-box img {
-        max-width: 168px;
+        max-width: 150px;
       }
 
       main {
@@ -619,7 +605,7 @@
       }
 
       .room {
-        font-size: 1.45rem;
+        font-size: 1.55rem;
       }
 
       .meeting,
@@ -628,23 +614,17 @@
       }
 
       .group-code {
-        font-size: 1.35rem;
+        font-size: 1.28rem;
       }
 
       .group-name {
-        flex-basis: 160px;
+        flex-basis: 150px;
       }
 
-      .delegate-info,
-      .delegate-info.single-column {
+      .delegate-info {
         grid-template-columns: 1fr;
         margin-top: 22px;
         gap: 12px;
-      }
-
-      .schedule-row {
-        grid-template-columns: 1fr;
-        gap: 3px;
       }
 
       .feedback-actions {
@@ -654,6 +634,28 @@
 
       .feedback-button {
         text-align: center;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .hero-label {
+        font-size: 0.95rem;
+      }
+
+      .room {
+        font-size: 1.42rem;
+      }
+
+      .group-code {
+        width: 100%;
+      }
+
+      .group-divider {
+        display: none;
+      }
+
+      .group-name {
+        flex-basis: 100%;
       }
     }
 
@@ -691,15 +693,10 @@
   <section class="hero">
     <div class="hero-card">
       <div class="accent-line"></div>
-
-      <p class="meeting-title" id="meetingTitle">
-        Loading meeting information...
-      </p>
-
-      <h1 id="heroTitle">IMO Rooms and Locations</h1>
-
-      <p class="hero-description" id="heroDescription">
-        Current committee room locations for delegates and participants.
+      <p class="hero-label">Delegate information</p>
+      <h1>IMO Rooms and Locations</h1>
+      <p class="hero-description">
+        Current meeting-room locations for delegates and participants. Room information is updated automatically from the published room feed.
       </p>
     </div>
 
@@ -715,7 +712,7 @@
   <main>
     <div class="top-row">
       <div class="notice">
-        <span id="noticeText">Loading room information...</span>
+        <span id="noticeText">Current room assignments</span>
         <small id="updated">Loading latest room list...</small>
       </div>
 
@@ -724,62 +721,34 @@
       </div>
     </div>
 
-    <section class="grid" id="rooms">
+    <section class="grid" id="rooms" aria-label="Current room assignments">
       <article class="card">
         <div class="room">Loading rooms...</div>
       </article>
     </section>
 
-    <section
-      class="delegate-info"
-      id="delegateInfo"
-      aria-label="Delegate information"
-    >
-      <article class="info-card" id="timetableCard">
-        <h2 id="timetableTitle">Plenary timetable</h2>
-
-        <p class="schedule-note" id="timetableNote">
-          Indicative timetable for plenary sessions only.
+    <section class="delegate-info" aria-label="Delegate information">
+      <article class="info-card">
+        <h2>Using this page</h2>
+        <p>
+          This page shows public room-location information only. Rooms remain listed even when no meeting is scheduled in that room today.
         </p>
-
-        <div class="schedule-row" id="morningRow">
-          <div class="schedule-label">Morning session</div>
-          <div class="schedule-time">
-            <span id="morningSession"></span>
-            <br>
-            <span id="morningBreak"></span>
-          </div>
-        </div>
-
-        <div class="schedule-row" id="lunchRow">
-          <div class="schedule-label">Lunch break</div>
-          <div class="schedule-time" id="lunchBreak"></div>
-        </div>
-
-        <div class="schedule-row" id="afternoonRow">
-          <div class="schedule-label">Afternoon session</div>
-          <div class="schedule-time">
-            <span id="afternoonSession"></span>
-            <br>
-            <span id="afternoonBreak"></span>
-          </div>
-        </div>
+        <p class="info-note">
+          Please check official meeting documents and announcements for agenda, participation and document information.
+        </p>
       </article>
 
       <article class="info-card">
-        <h2 id="documentationTitle">
-          Documentation and hybrid meetings
-        </h2>
+        <h2>Documentation and hybrid meetings</h2>
 
         <div class="doc-links">
           <a
             class="doc-link"
-            id="meetingDocumentsLink"
-            href="#"
+            href="https://docs.imo.org/"
             target="_blank"
             rel="noopener"
           >
-            Access meeting documents
+            Access IMO meeting documents
           </a>
 
           <a
@@ -820,8 +789,7 @@
         </div>
 
         <p class="info-note">
-          Remote-active participants should use only their personal joining
-          link received by email. Do not share Zoom links.
+          Remote-active participants should use only their personal joining link received by email. Do not share Zoom links.
         </p>
       </article>
     </section>
@@ -829,7 +797,6 @@
     <section class="feedback-section" aria-label="Feedback">
       <div class="feedback-card">
         <h2>Feedback</h2>
-
         <p>Help us improve this page for delegates and participants.</p>
 
         <div class="feedback-actions">
@@ -855,7 +822,7 @@
     </section>
 
     <p class="status" id="status">
-      Information loads from rss.xml and refreshes every hour.
+      Information loads from rss.xml and refreshes every 10 minutes.
     </p>
   </main>
 
@@ -864,24 +831,12 @@
   </footer>
 
   <script>
-    const pageUrl =
-      "https://meetingroomsimo.github.io/MeetingroomsIMO/";
+    const pageUrl = "https://meetingroomsimo.github.io/MeetingroomsIMO/";
+    const defaultNoAssignmentText = "No meeting scheduled today";
+    const refreshIntervalMs = 10 * 60 * 1000;
 
-    let currentMeetingTitle =
-      "IMO Committee Rooms and Locations";
-
-    function getNamespaceValue(xml, localName, fallback = "") {
-      const node =
-        xml.getElementsByTagNameNS("*", localName)[0];
-
-      if (!node || !node.textContent) {
-        return fallback;
-      }
-
-      const value =
-        node.textContent.replace(/\s+/g, " ").trim();
-
-      return value || fallback;
+    function normaliseText(value) {
+      return (value || "").replace(/\s+/g, " ").trim();
     }
 
     function refreshTimeText() {
@@ -896,13 +851,8 @@
     }
 
     async function sharePage() {
-      const shareTitle =
-        currentMeetingTitle +
-        " – IMO Committee Rooms and Locations";
-
-      const shareText =
-        "Current IMO committee room locations for " +
-        currentMeetingTitle;
+      const shareTitle = "IMO Rooms and Locations";
+      const shareText = "Current IMO room locations for delegates and participants.";
 
       if (navigator.share) {
         try {
@@ -928,21 +878,15 @@
 
     function createTextElement(className, text) {
       const element = document.createElement("div");
-
       element.className = className;
       element.textContent = text;
-
       return element;
     }
 
     function createTag(text, extraClass = "") {
       const tag = document.createElement("span");
-
-      tag.className =
-        extraClass ? "tag " + extraClass : "tag";
-
+      tag.className = extraClass ? "tag " + extraClass : "tag";
       tag.textContent = text;
-
       return tag;
     }
 
@@ -968,26 +912,119 @@
       return "floor-other";
     }
 
+    function looksLikeFloor(value) {
+      return /\b(ground|first|second|third|fourth|floor)\b/i.test(value || "");
+    }
+
+    function looksLikeDateRange(value) {
+      return /\b\d{1,2}\s*[–-]\s*\d{1,2}\s+[A-Za-z]+\s+\d{4}\b/.test(value || "") ||
+        /\b\d{4}-\d{2}-\d{2}\b/.test(value || "");
+    }
+
+    function isNoAssignment(use) {
+      return /\b(no meeting|not in use|no assignment|no room assignment|no scheduled meeting)\b/i.test(use || "");
+    }
+
+    function isGroupPrefix(value) {
+      return /^\s*(?:[A-Z]{2,8}\s*\d+[A-Z]?\s*[-–—]\s*)?(?:WG|DG|EG)\s*\d+[A-Z]?\s*$/i.test(value || "");
+    }
+
+    function splitTitleAtRoomSeparator(title) {
+      const separatorMatch = title.match(/\s+[—–-]\s+/);
+
+      if (!separatorMatch) {
+        return {
+          room: normaliseText(title) || "Room",
+          rest: ""
+        };
+      }
+
+      const index = separatorMatch.index;
+      const separatorLength = separatorMatch[0].length;
+
+      return {
+        room: normaliseText(title.slice(0, index)) || "Room",
+        rest: normaliseText(title.slice(index + separatorLength))
+      };
+    }
+
+    function parseTitle(title) {
+      const titleParts = splitTitleAtRoomSeparator(normaliseText(title));
+      const restParts = titleParts.rest.split("|").map(normaliseText).filter(Boolean);
+
+      let use = restParts[0] || defaultNoAssignmentText;
+      let extraParts = restParts.slice(1);
+
+      /*
+        Preferred new RSS title format:
+        Room — III 12 - WG 3 | Working Group name | Second floor | Optional note
+
+        The first pipe is part of the working-group display, not metadata.
+      */
+      if (restParts.length > 1 && isGroupPrefix(restParts[0]) &&
+          !looksLikeFloor(restParts[1]) && !looksLikeDateRange(restParts[1])) {
+        use = restParts[0] + " | " + restParts[1];
+        extraParts = restParts.slice(2);
+      }
+
+      let floor = "";
+      const notes = [];
+
+      extraParts.forEach(part => {
+        if (!floor && looksLikeFloor(part)) {
+          floor = part;
+          return;
+        }
+
+        if (looksLikeDateRange(part)) {
+          return;
+        }
+
+        if (part) {
+          notes.push(part);
+        }
+      });
+
+      return {
+        room: titleParts.room,
+        use: use || defaultNoAssignmentText,
+        floor,
+        note: notes.join(" | ")
+      };
+    }
+
     function parseGroupInformation(use) {
+      const prefixedPipeMatch = use.match(
+        /^\s*([A-Z]{2,8}\s*\d+[A-Z]?)\s*[-–—]\s*((?:WG|DG|EG)\s*\d+[A-Z]?)\s*[|｜]\s*(.+)$/i
+      );
+
+      if (prefixedPipeMatch) {
+        return {
+          code: normaliseText(prefixedPipeMatch[1].toUpperCase()) + " - " +
+            normaliseText(prefixedPipeMatch[2].toUpperCase()),
+          name: normaliseText(prefixedPipeMatch[3])
+        };
+      }
+
       const pipeMatch = use.match(
-        /^\s*((?:WG|DG|EG)\s*\d+)\s*[|｜]\s*(.+)$/i
+        /^\s*((?:WG|DG|EG)\s*\d+[A-Z]?)\s*[|｜]\s*(.+)$/i
       );
 
       if (pipeMatch) {
         return {
-          code: pipeMatch[1].toUpperCase().replace(/\s+/g, " "),
-          name: pipeMatch[2].trim()
+          code: normaliseText(pipeMatch[1].toUpperCase()),
+          name: normaliseText(pipeMatch[2])
         };
       }
 
       const bracketMatch = use.match(
-        /^(.*?)\s*\(((?:WG|DG|EG)\s*\d+)\)\s*$/i
+        /^(.*?)\s*\(((?:WG|DG|EG)\s*\d+[A-Z]?)\)\s*$/i
       );
 
       if (bracketMatch) {
         return {
-          code: bracketMatch[2].toUpperCase().replace(/\s+/g, " "),
-          name: bracketMatch[1].trim()
+          code: normaliseText(bracketMatch[2].toUpperCase()),
+          name: normaliseText(bracketMatch[1])
         };
       }
 
@@ -995,33 +1032,27 @@
     }
 
     function createMeetingDisplay(use) {
-      const groupInformation =
-        parseGroupInformation(use);
+      const groupInformation = parseGroupInformation(use);
 
       if (!groupInformation) {
-        return createTextElement("meeting", use);
+        return createTextElement(
+          isNoAssignment(use) ? "meeting empty-state" : "meeting",
+          use
+        );
       }
 
-      const wrapper =
-        document.createElement("div");
-
+      const wrapper = document.createElement("div");
       wrapper.className = "group-meeting";
 
-      const code =
-        document.createElement("span");
-
+      const code = document.createElement("span");
       code.className = "group-code";
       code.textContent = groupInformation.code;
 
-      const divider =
-        document.createElement("span");
-
+      const divider = document.createElement("span");
       divider.className = "group-divider";
       divider.textContent = "|";
 
-      const name =
-        document.createElement("span");
-
+      const name = document.createElement("span");
       name.className = "group-name";
       name.textContent = groupInformation.name;
 
@@ -1032,59 +1063,25 @@
       return wrapper;
     }
 
-    function createCard(title) {
-      const parts =
-        title.split("|").map(part => part.trim());
+    function createCardFromTitle(title) {
+      const data = parseTitle(title);
+      const card = document.createElement("article");
+      const noAssignment = isNoAssignment(data.use);
 
-      const roomAndUse = parts[0] || "";
-      const floor = parts[2] || "";
-      const format = parts[3] || "";
+      card.className = noAssignment ? "card no-assignment" : "card";
 
-      const roomParts =
-        roomAndUse.split("—").map(part => part.trim());
+      card.appendChild(createTextElement("room", data.room));
+      card.appendChild(createMeetingDisplay(data.use));
 
-      const room =
-        roomParts[0] || "Room";
-
-      const use =
-        roomParts.slice(1).join(" — ") || "";
-
-      const card =
-        document.createElement("article");
-
-      card.className = "card";
-
-      card.appendChild(
-        createTextElement("room", room)
-      );
-
-      if (use) {
-        card.appendChild(
-          createMeetingDisplay(use)
-        );
+      if (data.note) {
+        card.appendChild(createTextElement("room-note", data.note));
       }
 
-      const details =
-        document.createElement("div");
-
+      const details = document.createElement("div");
       details.className = "details";
 
-      if (floor) {
-        details.appendChild(
-          createTag(
-            floor,
-            getFloorClass(floor)
-          )
-        );
-      }
-
-      if (format) {
-        details.appendChild(
-          createTag(
-            format,
-            "format-neutral"
-          )
-        );
+      if (data.floor) {
+        details.appendChild(createTag(data.floor, getFloorClass(data.floor)));
       }
 
       card.appendChild(details);
@@ -1092,318 +1089,69 @@
       return card;
     }
 
-    function updateMeetingInformation(xml) {
-      const meetingTitle =
-        getNamespaceValue(
-          xml,
-          "meetingTitle",
-          "Current IMO meeting"
-        );
-
-      const heroTitle =
-        getNamespaceValue(
-          xml,
-          "heroTitle",
-          "IMO Rooms and Locations"
-        );
-
-      const heroDescription =
-        getNamespaceValue(
-          xml,
-          "heroDescription",
-          "Current committee room locations for delegates and participants."
-        );
-
-      const noticeText =
-        getNamespaceValue(
-          xml,
-          "noticeText",
-          meetingTitle + " – room location information"
-        );
-
-      const documentationTitle =
-        getNamespaceValue(
-          xml,
-          "documentSectionTitle",
-          meetingTitle + " documentation and hybrid meetings"
-        );
-
-      const documentLabel =
-        getNamespaceValue(
-          xml,
-          "documentLabel",
-          "Access " + meetingTitle + " documents"
-        );
-
-      const documentUrl =
-        getNamespaceValue(
-          xml,
-          "documentUrl",
-          ""
-        );
-
-      currentMeetingTitle = meetingTitle;
-
-      document.title =
-        meetingTitle +
-        " – IMO Committee Rooms and Locations";
-
-      document.getElementById(
-        "meetingTitle"
-      ).textContent = meetingTitle;
-
-      document.getElementById(
-        "heroTitle"
-      ).textContent = heroTitle;
-
-      document.getElementById(
-        "heroDescription"
-      ).textContent = heroDescription;
-
-      document.getElementById(
-        "noticeText"
-      ).textContent = noticeText;
-
-      document.getElementById(
-        "documentationTitle"
-      ).textContent = documentationTitle;
-
-      const meetingDocumentsLink =
-        document.getElementById(
-          "meetingDocumentsLink"
-        );
-
-      if (documentUrl) {
-        meetingDocumentsLink.href = documentUrl;
-        meetingDocumentsLink.textContent = documentLabel;
-        meetingDocumentsLink.hidden = false;
-      } else {
-        meetingDocumentsLink.hidden = true;
-      }
-    }
-
-    function updateTimetable(xml) {
-      const showTimetable =
-        getNamespaceValue(
-          xml,
-          "showTimetable",
-          "false"
-        ).toLowerCase() === "true";
-
-      const timetableCard =
-        document.getElementById("timetableCard");
-
-      const delegateInfo =
-        document.getElementById("delegateInfo");
-
-      if (!showTimetable) {
-        timetableCard.hidden = true;
-        delegateInfo.classList.add("single-column");
-        return;
-      }
-
-      timetableCard.hidden = false;
-      delegateInfo.classList.remove("single-column");
-
-      document.getElementById(
-        "timetableTitle"
-      ).textContent =
-        getNamespaceValue(
-          xml,
-          "timetableTitle",
-          "Plenary timetable"
-        );
-
-      document.getElementById(
-        "timetableNote"
-      ).textContent =
-        getNamespaceValue(
-          xml,
-          "timetableNote",
-          "Indicative timetable for plenary sessions only."
-        );
-
-      const morningSession =
-        getNamespaceValue(xml, "morningSession", "");
-
-      const morningBreak =
-        getNamespaceValue(xml, "morningBreak", "");
-
-      const lunchBreak =
-        getNamespaceValue(xml, "lunchBreak", "");
-
-      const afternoonSession =
-        getNamespaceValue(xml, "afternoonSession", "");
-
-      const afternoonBreak =
-        getNamespaceValue(xml, "afternoonBreak", "");
-
-      document.getElementById(
-        "morningSession"
-      ).textContent = morningSession;
-
-      document.getElementById(
-        "morningBreak"
-      ).textContent =
-        morningBreak
-          ? "Coffee break: " + morningBreak
-          : "";
-
-      document.getElementById(
-        "lunchBreak"
-      ).textContent = lunchBreak;
-
-      document.getElementById(
-        "afternoonSession"
-      ).textContent = afternoonSession;
-
-      document.getElementById(
-        "afternoonBreak"
-      ).textContent =
-        afternoonBreak
-          ? "Coffee break: " + afternoonBreak
-          : "";
-
-      document.getElementById(
-        "morningRow"
-      ).hidden =
-        !morningSession && !morningBreak;
-
-      document.getElementById(
-        "lunchRow"
-      ).hidden =
-        !lunchBreak;
-
-      document.getElementById(
-        "afternoonRow"
-      ).hidden =
-        !afternoonSession && !afternoonBreak;
-    }
-
     async function loadRooms() {
-      const container =
-        document.getElementById("rooms");
-
-      const updated =
-        document.getElementById("updated");
-
-      const status =
-        document.getElementById("status");
+      const container = document.getElementById("rooms");
+      const updated = document.getElementById("updated");
+      const status = document.getElementById("status");
 
       try {
-        const response = await fetch(
-          "rss.xml?cache=" + Date.now(),
-          { cache: "no-store" }
-        );
+        const response = await fetch("rss.xml?cache=" + Date.now(), {
+          cache: "no-store"
+        });
 
         if (!response.ok) {
           throw new Error("Could not load rss.xml");
         }
 
-        const text =
-          await response.text();
-
-        const parser =
-          new DOMParser();
-
-        const xml =
-          parser.parseFromString(
-            text,
-            "application/xml"
-          );
+        const text = await response.text();
+        const parser = new DOMParser();
+        const xml = parser.parseFromString(text, "application/xml");
 
         if (xml.querySelector("parsererror")) {
           throw new Error("rss.xml contains invalid XML");
         }
 
-        updateMeetingInformation(xml);
-        updateTimetable(xml);
+        const items = Array.from(xml.querySelectorAll("item"));
 
-        const items =
-          Array.from(
-            xml.querySelectorAll("item")
-          );
-
-        updated.textContent =
-          "Last refreshed: " + refreshTimeText();
-
+        updated.textContent = "Last refreshed: " + refreshTimeText();
         container.innerHTML = "";
 
         if (items.length === 0) {
-          const emptyCard =
-            document.createElement("article");
-
-          emptyCard.className = "card";
-
-          emptyCard.appendChild(
-            createTextElement(
-              "room",
-              "No rooms currently listed"
-            )
-          );
-
+          const emptyCard = document.createElement("article");
+          emptyCard.className = "card no-assignment";
+          emptyCard.appendChild(createTextElement("room", "No room information available"));
+          emptyCard.appendChild(createTextElement("meeting empty-state", "Please check again later."));
           container.appendChild(emptyCard);
-
-          status.textContent =
-            "No room items found in rss.xml.";
-
+          status.textContent = "No room items found in rss.xml.";
           return;
         }
 
         items.forEach(item => {
-          const title =
-            item
-              .querySelector("title")
-              ?.textContent
-              ?.replace(/\s+/g, " ")
-              .trim() || "";
+          const title = normaliseText(item.querySelector("title")?.textContent || "");
 
           if (title) {
-            container.appendChild(
-              createCard(title)
-            );
+            container.appendChild(createCardFromTitle(title));
           }
         });
 
-        status.textContent =
-          "Information loads from rss.xml and refreshes every hour.";
-
+        status.textContent = "Information loads from rss.xml and refreshes every 10 minutes.";
       } catch (error) {
         container.innerHTML = "";
 
-        const errorCard =
-          document.createElement("article");
-
-        errorCard.className = "card";
-
-        errorCard.appendChild(
-          createTextElement(
-            "room",
-            "Unable to load rooms"
-          )
-        );
-
-        errorCard.appendChild(
-          createTextElement(
-            "meeting",
-            "Please check rss.xml."
-          )
-        );
-
+        const errorCard = document.createElement("article");
+        errorCard.className = "card no-assignment";
+        errorCard.appendChild(createTextElement("room", "Unable to load rooms"));
+        errorCard.appendChild(createTextElement("meeting empty-state", "Please check rss.xml."));
         container.appendChild(errorCard);
 
-        status.textContent =
-          "The page could not read rss.xml.";
-
-        updated.textContent =
-          "Last refresh failed: " + refreshTimeText();
-
+        status.textContent = "The page could not read rss.xml.";
+        updated.textContent = "Last refresh failed: " + refreshTimeText();
         console.error(error);
       }
     }
 
     loadRooms();
-    setInterval(loadRooms, 3600000);
+    setInterval(loadRooms, refreshIntervalMs);
   </script>
 </body>
 </html>
