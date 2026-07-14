@@ -349,6 +349,8 @@
       font-weight: 900;
     }
 
+    /* Distinct floor colours */
+
     .floor-ground {
       color: #ffffff;
       background: #1565C0;
@@ -379,28 +381,13 @@
       border-color: #37474F;
     }
 
-    .format-hybrid {
-      color: #ffffff;
-      background: #00838F;
-      border-color: #006064;
-    }
+    /* Neutral meeting-format bubble */
 
-    .format-tbc {
-      color: #ffffff;
-      background: #EF6C00;
-      border-color: #BF4F00;
-    }
-
-    .format-in-person {
-      color: #ffffff;
-      background: #5E35B1;
-      border-color: #4527A0;
-    }
-
-    .format-other {
-      color: #ffffff;
-      background: #607D8B;
-      border-color: #455A64;
+    .format-neutral {
+      color: var(--imo-navy);
+      background: #ffffff;
+      border-color: #AEBCC7;
+      box-shadow: none;
     }
 
     .delegate-info {
@@ -608,14 +595,6 @@
       }
 
       main {
-        padding margin: 18px auto 0;
-      }
-
-      .qr-box img {
-        max-width: 168px;
-      }
-
-      main {
         padding: 10px 12px 34px;
       }
 
@@ -759,8 +738,7 @@
       <article class="info-card" id="timetableCard">
         <h2 id="timetableTitle">Plenary timetable</h2>
 
-" id="timetableCard">
-               <p class="schedule-note" id="timetableNote">
+        <p class="schedule-note" id="timetableNote">
           Indicative timetable for plenary sessions only.
         </p>
 
@@ -990,27 +968,6 @@
       return "floor-other";
     }
 
-    function getFormatClass(format) {
-      const value = format.toLowerCase();
-
-      if (value.includes("hybrid")) {
-        return "format-hybrid";
-      }
-
-      if (value.includes("tbc")) {
-        return "format-tbc";
-      }
-
-      if (
-        value.includes("in-person") ||
-        value.includes("in person")
-      ) {
-        return "format-in-person";
-      }
-
-      return "format-other";
-    }
-
     function parseGroupInformation(use) {
       const pipeMatch = use.match(
         /^\s*((?:WG|DG|EG)\s*\d+)\s*[|｜]\s*(.+)$/i
@@ -1125,7 +1082,7 @@
         details.appendChild(
           createTag(
             format,
-            getFormatClass(format)
+            "format-neutral"
           )
         );
       }
