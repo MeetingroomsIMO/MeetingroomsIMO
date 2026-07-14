@@ -1,0 +1,62 @@
+name: Update RSS from Power Automate
+
+on:
+  repository_dispatch:
+    types: [update-rss]
+  workflow_dispatch:
+    inputs:
+      rss_base64:
+        description: "Base64-encoded rss.xml content"
+        required: false
+        type: string
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-rss
+  cancel-in-progress: false
+
+jobs:
+  update-rss:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Decode RSS payload
+        env:
+          RSS_BASE64: ${{ github.event.client_payload.rss_base64 || inputs.rss_base64 }}
+        run: |
+          if [ -z "$RSS_BASE64" ]; then
+            echo "rss_base64 payload is empty."
+            exit 1
+          fi
+
+          printf '%s' "$RSS_BASE64" | base64 --decode > rss.xml
+
+      - name: Validate rss.xml
+        run: |
+          python3 - <<'PY'
+          import xml.etree.ElementTree as ET
+          ET.parse("rss.xml")
+          print("rss.xml is valid XML")
+          PY
+
+      - name: Commit rss.xml if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          if git diff --quiet -- rss.xml; then
+            echo "No change to rss.xml"
+            exit 0
+          fi
+
+          git add rss.xml
+          git commit -m "Update RSS feed from Power Automate"
+          git pull --rebase
+          git push
