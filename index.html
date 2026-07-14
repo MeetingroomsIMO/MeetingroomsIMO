@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>IMO Meeting Rooms and Locations</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -440,6 +441,39 @@
       opacity: 0.9;
     }
 
+    .schedule-note {
+      margin: -4px 0 12px;
+      color: var(--imo-navy);
+      font-size: 0.9rem;
+      line-height: 1.4;
+      font-weight: 500;
+      opacity: 0.86;
+    }
+
+    .schedule-row {
+      display: grid;
+      grid-template-columns: 150px 1fr;
+      padding: 11px 0;
+      border-top: 1px solid #D7E2EA;
+      gap: 12px;
+      font-size: 0.95rem;
+    }
+
+    .schedule-row:first-of-type {
+      border-top: 0;
+    }
+
+    .schedule-label {
+      color: var(--imo-navy);
+      font-weight: 900;
+    }
+
+    .schedule-time {
+      color: var(--imo-navy);
+      line-height: 1.5;
+      font-weight: 500;
+    }
+
     .doc-links {
       display: grid;
       margin-top: 8px;
@@ -627,6 +661,11 @@
         gap: 12px;
       }
 
+      .schedule-row {
+        grid-template-columns: 1fr;
+        gap: 4px;
+      }
+
       .feedback-actions {
         display: grid;
         grid-template-columns: 1fr;
@@ -696,7 +735,8 @@
       <p class="hero-label">Delegate information</p>
       <h1>IMO Rooms and Locations</h1>
       <p class="hero-description">
-        Current meeting-room locations for delegates and participants. Room information is updated automatically from the published room feed.
+        Current meeting-room locations for delegates and participants.
+        Room information is updated automatically from the published room feed.
       </p>
     </div>
 
@@ -729,13 +769,39 @@
 
     <section class="delegate-info" aria-label="Delegate information">
       <article class="info-card">
-        <h2>Using this page</h2>
-        <p>
-          This page shows public room-location information only. Rooms remain listed even when no meeting is scheduled in that room today.
+        <h2>Plenary timetable</h2>
+
+        <p class="schedule-note">
+          Indicative timetable for plenary sessions only.
         </p>
-        <p class="info-note">
-          Please check official meeting documents and announcements for agenda, participation and document information.
-        </p>
+
+        <div class="schedule-row">
+          <div class="schedule-label">Morning session</div>
+
+          <div class="schedule-time">
+            09:30 – 12:30
+            <br>
+            Coffee break: 11:00 – 11:30
+          </div>
+        </div>
+
+        <div class="schedule-row">
+          <div class="schedule-label">Lunch break</div>
+
+          <div class="schedule-time">
+            12:30 – 14:30
+          </div>
+        </div>
+
+        <div class="schedule-row">
+          <div class="schedule-label">Afternoon session</div>
+
+          <div class="schedule-time">
+            14:30 – 17:30
+            <br>
+            Coffee break: 16:00 – 16:30
+          </div>
+        </div>
       </article>
 
       <article class="info-card">
@@ -789,7 +855,8 @@
         </div>
 
         <p class="info-note">
-          Remote-active participants should use only their personal joining link received by email. Do not share Zoom links.
+          Remote-active participants should use only their personal joining
+          link received by email. Do not share Zoom links.
         </p>
       </article>
     </section>
@@ -797,6 +864,7 @@
     <section class="feedback-section" aria-label="Feedback">
       <div class="feedback-card">
         <h2>Feedback</h2>
+
         <p>Help us improve this page for delegates and participants.</p>
 
         <div class="feedback-actions">
@@ -831,12 +899,19 @@
   </footer>
 
   <script>
-    const pageUrl = "https://meetingroomsimo.github.io/MeetingroomsIMO/";
-    const defaultNoAssignmentText = "No meeting scheduled today";
-    const refreshIntervalMs = 10 * 60 * 1000;
+    const pageUrl =
+      "https://meetingroomsimo.github.io/MeetingroomsIMO/";
+
+    const defaultNoAssignmentText =
+      "No meeting scheduled today";
+
+    const refreshIntervalMs =
+      10 * 60 * 1000;
 
     function normaliseText(value) {
-      return (value || "").replace(/\s+/g, " ").trim();
+      return (value || "")
+        .replace(/\s+/g, " ")
+        .trim();
     }
 
     function refreshTimeText() {
@@ -851,8 +926,11 @@
     }
 
     async function sharePage() {
-      const shareTitle = "IMO Rooms and Locations";
-      const shareText = "Current IMO room locations for delegates and participants.";
+      const shareTitle =
+        "IMO Rooms and Locations";
+
+      const shareText =
+        "Current IMO room locations for delegates and participants.";
 
       if (navigator.share) {
         try {
@@ -877,21 +955,32 @@
     }
 
     function createTextElement(className, text) {
-      const element = document.createElement("div");
+      const element =
+        document.createElement("div");
+
       element.className = className;
       element.textContent = text;
+
       return element;
     }
 
     function createTag(text, extraClass = "") {
-      const tag = document.createElement("span");
-      tag.className = extraClass ? "tag " + extraClass : "tag";
+      const tag =
+        document.createElement("span");
+
+      tag.className =
+        extraClass
+          ? "tag " + extraClass
+          : "tag";
+
       tag.textContent = text;
+
       return tag;
     }
 
     function getFloorClass(floor) {
-      const value = floor.toLowerCase();
+      const value =
+        floor.toLowerCase();
 
       if (value.includes("ground")) {
         return "floor-ground";
@@ -913,24 +1002,32 @@
     }
 
     function looksLikeFloor(value) {
-      return /\b(ground|first|second|third|fourth|floor)\b/i.test(value || "");
+      return /\b(ground|first|second|third|fourth|floor)\b/i
+        .test(value || "");
     }
 
     function looksLikeDateRange(value) {
-      return /\b\d{1,2}\s*[–-]\s*\d{1,2}\s+[A-Za-z]+\s+\d{4}\b/.test(value || "") ||
-        /\b\d{4}-\d{2}-\d{2}\b/.test(value || "");
+      return (
+        /\b\d{1,2}\s*[–-]\s*\d{1,2}\s+[A-Za-z]+\s+\d{4}\b/
+          .test(value || "") ||
+        /\b\d{4}-\d{2}-\d{2}\b/
+          .test(value || "")
+      );
     }
 
     function isNoAssignment(use) {
-      return /\b(no meeting|not in use|no assignment|no room assignment|no scheduled meeting)\b/i.test(use || "");
+      return /\b(no meeting|not in use|no assignment|no room assignment|no scheduled meeting)\b/i
+        .test(use || "");
     }
 
     function isGroupPrefix(value) {
-      return /^\s*(?:[A-Z]{2,8}\s*\d+[A-Z]?\s*[-–—]\s*)?(?:WG|DG|EG)\s*\d+[A-Z]?\s*$/i.test(value || "");
+      return /^\s*(?:[A-Z]{2,8}\s*\d+[A-Z]?\s*[-–—]\s*)?(?:WG|DG|EG)\s*\d+[A-Z]?\s*$/i
+        .test(value || "");
     }
 
     function splitTitleAtRoomSeparator(title) {
-      const separatorMatch = title.match(/\s+[—–-]\s+/);
+      const separatorMatch =
+        title.match(/\s+[—–-]\s+/);
 
       if (!separatorMatch) {
         return {
@@ -939,39 +1036,66 @@
         };
       }
 
-      const index = separatorMatch.index;
-      const separatorLength = separatorMatch[0].length;
+      const index =
+        separatorMatch.index;
+
+      const separatorLength =
+        separatorMatch[0].length;
 
       return {
-        room: normaliseText(title.slice(0, index)) || "Room",
-        rest: normaliseText(title.slice(index + separatorLength))
+        room:
+          normaliseText(title.slice(0, index)) ||
+          "Room",
+
+        rest:
+          normaliseText(
+            title.slice(index + separatorLength)
+          )
       };
     }
 
     function parseTitle(title) {
-      const titleParts = splitTitleAtRoomSeparator(normaliseText(title));
-      const restParts = titleParts.rest.split("|").map(normaliseText).filter(Boolean);
+      const titleParts =
+        splitTitleAtRoomSeparator(
+          normaliseText(title)
+        );
 
-      let use = restParts[0] || defaultNoAssignmentText;
-      let extraParts = restParts.slice(1);
+      const restParts =
+        titleParts.rest
+          .split("|")
+          .map(normaliseText)
+          .filter(Boolean);
 
-      /*
-        Preferred new RSS title format:
-        Room — III 12 - WG 3 | Working Group name | Second floor | Optional note
+      let use =
+        restParts[0] ||
+        defaultNoAssignmentText;
 
-        The first pipe is part of the working-group display, not metadata.
-      */
-      if (restParts.length > 1 && isGroupPrefix(restParts[0]) &&
-          !looksLikeFloor(restParts[1]) && !looksLikeDateRange(restParts[1])) {
-        use = restParts[0] + " | " + restParts[1];
-        extraParts = restParts.slice(2);
+      let extraParts =
+        restParts.slice(1);
+
+      if (
+        restParts.length > 1 &&
+        isGroupPrefix(restParts[0]) &&
+        !looksLikeFloor(restParts[1]) &&
+        !looksLikeDateRange(restParts[1])
+      ) {
+        use =
+          restParts[0] +
+          " | " +
+          restParts[1];
+
+        extraParts =
+          restParts.slice(2);
       }
 
       let floor = "";
       const notes = [];
 
       extraParts.forEach(part => {
-        if (!floor && looksLikeFloor(part)) {
+        if (
+          !floor &&
+          looksLikeFloor(part)
+        ) {
           floor = part;
           return;
         }
@@ -987,44 +1111,73 @@
 
       return {
         room: titleParts.room,
-        use: use || defaultNoAssignmentText,
+        use:
+          use ||
+          defaultNoAssignmentText,
         floor,
         note: notes.join(" | ")
       };
     }
 
     function parseGroupInformation(use) {
-      const prefixedPipeMatch = use.match(
-        /^\s*([A-Z]{2,8}\s*\d+[A-Z]?)\s*[-–—]\s*((?:WG|DG|EG)\s*\d+[A-Z]?)\s*[|｜]\s*(.+)$/i
-      );
+      const prefixedPipeMatch =
+        use.match(
+          /^\s*([A-Z]{2,8}\s*\d+[A-Z]?)\s*[-–—]\s*((?:WG|DG|EG)\s*\d+[A-Z]?)\s*[|｜]\s*(.+)$/i
+        );
 
       if (prefixedPipeMatch) {
         return {
-          code: normaliseText(prefixedPipeMatch[1].toUpperCase()) + " - " +
-            normaliseText(prefixedPipeMatch[2].toUpperCase()),
-          name: normaliseText(prefixedPipeMatch[3])
+          code:
+            normaliseText(
+              prefixedPipeMatch[1].toUpperCase()
+            ) +
+            " - " +
+            normaliseText(
+              prefixedPipeMatch[2].toUpperCase()
+            ),
+
+          name:
+            normaliseText(
+              prefixedPipeMatch[3]
+            )
         };
       }
 
-      const pipeMatch = use.match(
-        /^\s*((?:WG|DG|EG)\s*\d+[A-Z]?)\s*[|｜]\s*(.+)$/i
-      );
+      const pipeMatch =
+        use.match(
+          /^\s*((?:WG|DG|EG)\s*\d+[A-Z]?)\s*[|｜]\s*(.+)$/i
+        );
 
       if (pipeMatch) {
         return {
-          code: normaliseText(pipeMatch[1].toUpperCase()),
-          name: normaliseText(pipeMatch[2])
+          code:
+            normaliseText(
+              pipeMatch[1].toUpperCase()
+            ),
+
+          name:
+            normaliseText(
+              pipeMatch[2]
+            )
         };
       }
 
-      const bracketMatch = use.match(
-        /^(.*?)\s*\(((?:WG|DG|EG)\s*\d+[A-Z]?)\)\s*$/i
-      );
+      const bracketMatch =
+        use.match(
+          /^(.*?)\s*\(((?:WG|DG|EG)\s*\d+[A-Z]?)\)\s*$/i
+        );
 
       if (bracketMatch) {
         return {
-          code: normaliseText(bracketMatch[2].toUpperCase()),
-          name: normaliseText(bracketMatch[1])
+          code:
+            normaliseText(
+              bracketMatch[2].toUpperCase()
+            ),
+
+          name:
+            normaliseText(
+              bracketMatch[1]
+            )
         };
       }
 
@@ -1032,29 +1185,50 @@
     }
 
     function createMeetingDisplay(use) {
-      const groupInformation = parseGroupInformation(use);
+      const groupInformation =
+        parseGroupInformation(use);
 
       if (!groupInformation) {
         return createTextElement(
-          isNoAssignment(use) ? "meeting empty-state" : "meeting",
+          isNoAssignment(use)
+            ? "meeting empty-state"
+            : "meeting",
           use
         );
       }
 
-      const wrapper = document.createElement("div");
-      wrapper.className = "group-meeting";
+      const wrapper =
+        document.createElement("div");
 
-      const code = document.createElement("span");
-      code.className = "group-code";
-      code.textContent = groupInformation.code;
+      wrapper.className =
+        "group-meeting";
 
-      const divider = document.createElement("span");
-      divider.className = "group-divider";
-      divider.textContent = "|";
+      const code =
+        document.createElement("span");
 
-      const name = document.createElement("span");
-      name.className = "group-name";
-      name.textContent = groupInformation.name;
+      code.className =
+        "group-code";
+
+      code.textContent =
+        groupInformation.code;
+
+      const divider =
+        document.createElement("span");
+
+      divider.className =
+        "group-divider";
+
+      divider.textContent =
+        "|";
+
+      const name =
+        document.createElement("span");
+
+      name.className =
+        "group-name";
+
+      name.textContent =
+        groupInformation.name;
 
       wrapper.appendChild(code);
       wrapper.appendChild(divider);
@@ -1064,24 +1238,57 @@
     }
 
     function createCardFromTitle(title) {
-      const data = parseTitle(title);
-      const card = document.createElement("article");
-      const noAssignment = isNoAssignment(data.use);
+      const data =
+        parseTitle(title);
 
-      card.className = noAssignment ? "card no-assignment" : "card";
+      const card =
+        document.createElement("article");
 
-      card.appendChild(createTextElement("room", data.room));
-      card.appendChild(createMeetingDisplay(data.use));
+      const noAssignment =
+        isNoAssignment(data.use);
+
+      card.className =
+        noAssignment
+          ? "card no-assignment"
+          : "card";
+
+      card.appendChild(
+        createTextElement(
+          "room",
+          data.room
+        )
+      );
+
+      card.appendChild(
+        createMeetingDisplay(
+          data.use
+        )
+      );
 
       if (data.note) {
-        card.appendChild(createTextElement("room-note", data.note));
+        card.appendChild(
+          createTextElement(
+            "room-note",
+            data.note
+          )
+        );
       }
 
-      const details = document.createElement("div");
-      details.className = "details";
+      const details =
+        document.createElement("div");
+
+      details.className =
+        "details";
 
       if (data.floor) {
-        details.appendChild(createTag(data.floor, getFloorClass(data.floor)));
+        details.appendChild(
+          createTag(
+            data.floor,
+            getFloorClass(
+              data.floor
+            )
+          )
+        );
       }
 
       card.appendChild(details);
@@ -1090,68 +1297,168 @@
     }
 
     async function loadRooms() {
-      const container = document.getElementById("rooms");
-      const updated = document.getElementById("updated");
-      const status = document.getElementById("status");
+      const container =
+        document.getElementById("rooms");
+
+      const updated =
+        document.getElementById("updated");
+
+      const status =
+        document.getElementById("status");
 
       try {
-        const response = await fetch("rss.xml?cache=" + Date.now(), {
-          cache: "no-store"
-        });
+        const response =
+          await fetch(
+            "rss.xml?cache=" +
+            Date.now(),
+            {
+              cache: "no-store"
+            }
+          );
 
         if (!response.ok) {
-          throw new Error("Could not load rss.xml");
+          throw new Error(
+            "Could not load rss.xml"
+          );
         }
 
-        const text = await response.text();
-        const parser = new DOMParser();
-        const xml = parser.parseFromString(text, "application/xml");
+        const text =
+          await response.text();
 
-        if (xml.querySelector("parsererror")) {
-          throw new Error("rss.xml contains invalid XML");
+        const parser =
+          new DOMParser();
+
+        const xml =
+          parser.parseFromString(
+            text,
+            "application/xml"
+          );
+
+        if (
+          xml.querySelector(
+            "parsererror"
+          )
+        ) {
+          throw new Error(
+            "rss.xml contains invalid XML"
+          );
         }
 
-        const items = Array.from(xml.querySelectorAll("item"));
+        const items =
+          Array.from(
+            xml.querySelectorAll(
+              "item"
+            )
+          );
 
-        updated.textContent = "Last refreshed: " + refreshTimeText();
-        container.innerHTML = "";
+        updated.textContent =
+          "Last refreshed: " +
+          refreshTimeText();
+
+        container.innerHTML =
+          "";
 
         if (items.length === 0) {
-          const emptyCard = document.createElement("article");
-          emptyCard.className = "card no-assignment";
-          emptyCard.appendChild(createTextElement("room", "No room information available"));
-          emptyCard.appendChild(createTextElement("meeting empty-state", "Please check again later."));
-          container.appendChild(emptyCard);
-          status.textContent = "No room items found in rss.xml.";
+          const emptyCard =
+            document.createElement(
+              "article"
+            );
+
+          emptyCard.className =
+            "card no-assignment";
+
+          emptyCard.appendChild(
+            createTextElement(
+              "room",
+              "No room information available"
+            )
+          );
+
+          emptyCard.appendChild(
+            createTextElement(
+              "meeting empty-state",
+              "Please check again later."
+            )
+          );
+
+          container.appendChild(
+            emptyCard
+          );
+
+          status.textContent =
+            "No room items found in rss.xml.";
+
           return;
         }
 
         items.forEach(item => {
-          const title = normaliseText(item.querySelector("title")?.textContent || "");
+          const title =
+            normaliseText(
+              item
+                .querySelector("title")
+                ?.textContent ||
+              ""
+            );
 
           if (title) {
-            container.appendChild(createCardFromTitle(title));
+            container.appendChild(
+              createCardFromTitle(
+                title
+              )
+            );
           }
         });
 
-        status.textContent = "Information loads from rss.xml and refreshes every 10 minutes.";
+        status.textContent =
+          "Information loads from rss.xml and refreshes every 10 minutes.";
+
       } catch (error) {
-        container.innerHTML = "";
+        container.innerHTML =
+          "";
 
-        const errorCard = document.createElement("article");
-        errorCard.className = "card no-assignment";
-        errorCard.appendChild(createTextElement("room", "Unable to load rooms"));
-        errorCard.appendChild(createTextElement("meeting empty-state", "Please check rss.xml."));
-        container.appendChild(errorCard);
+        const errorCard =
+          document.createElement(
+            "article"
+          );
 
-        status.textContent = "The page could not read rss.xml.";
-        updated.textContent = "Last refresh failed: " + refreshTimeText();
+        errorCard.className =
+          "card no-assignment";
+
+        errorCard.appendChild(
+          createTextElement(
+            "room",
+            "Unable to load rooms"
+          )
+        );
+
+        errorCard.appendChild(
+          createTextElement(
+            "meeting empty-state",
+            "Please check rss.xml."
+          )
+        );
+
+        container.appendChild(
+          errorCard
+        );
+
+        status.textContent =
+          "The page could not read rss.xml.";
+
+        updated.textContent =
+          "Last refresh failed: " +
+          refreshTimeText();
+
         console.error(error);
       }
     }
 
     loadRooms();
-    setInterval(loadRooms, refreshIntervalMs);
+
+    setInterval(
+      loadRooms,
+      refreshIntervalMs
+    );
   </script>
 </body>
 </html>
