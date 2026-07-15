@@ -459,6 +459,39 @@
       opacity: 0.9;
     }
 
+    .schedule-note {
+      margin: -4px 0 12px;
+      color: var(--imo-navy);
+      font-size: 0.9rem;
+      line-height: 1.4;
+      font-weight: 500;
+      opacity: 0.86;
+    }
+
+    .schedule-row {
+      display: grid;
+      grid-template-columns: 150px 1fr;
+      padding: 11px 0;
+      border-top: 1px solid #D7E2EA;
+      gap: 12px;
+      font-size: 0.95rem;
+    }
+
+    .schedule-row:first-of-type {
+      border-top: 0;
+    }
+
+    .schedule-label {
+      color: var(--imo-navy);
+      font-weight: 900;
+    }
+
+    .schedule-time {
+      color: var(--imo-navy);
+      line-height: 1.5;
+      font-weight: 500;
+    }
+
     .doc-links {
       display: grid;
       margin-top: 8px;
@@ -646,6 +679,12 @@
         gap: 12px;
       }
 
+
+      .schedule-row {
+        grid-template-columns: 1fr;
+        gap: 4px;
+      }
+
       .feedback-actions {
         display: grid;
         grid-template-columns: 1fr;
@@ -756,13 +795,45 @@
 
     <section class="delegate-info" aria-label="Delegate information">
       <article class="info-card">
-        <h2>Using this page</h2>
-        <p>
-          This page shows public room-location information only. Rooms remain listed even when no meeting is scheduled in that room today.
+        <h2>Plenary timetable</h2>
+
+        <p class="schedule-note">
+          Indicative timetable for plenary sessions only.
         </p>
-        <p class="info-note">
-          Please check official meeting documents and announcements for agenda, participation and document information.
-        </p>
+
+        <div class="schedule-row">
+          <div class="schedule-label">
+            Morning session
+          </div>
+
+          <div class="schedule-time">
+            09:30 – 12:30
+            <br>
+            Coffee break: 11:00 – 11:30
+          </div>
+        </div>
+
+        <div class="schedule-row">
+          <div class="schedule-label">
+            Lunch break
+          </div>
+
+          <div class="schedule-time">
+            12:30 – 14:30
+          </div>
+        </div>
+
+        <div class="schedule-row">
+          <div class="schedule-label">
+            Afternoon session
+          </div>
+
+          <div class="schedule-time">
+            14:30 – 17:30
+            <br>
+            Coffee break: 16:00 – 16:30
+          </div>
+        </div>
       </article>
 
       <article class="info-card">
