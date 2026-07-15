@@ -306,6 +306,25 @@
       font-weight: 800;
     }
 
+    .assignment-display {
+      margin-bottom: 15px;
+      padding-left: 4px;
+      color: var(--imo-navy);
+    }
+
+    .assignment-heading {
+      font-size: 1.28rem;
+      line-height: 1.18;
+      font-weight: 900;
+    }
+
+    .assignment-detail {
+      margin-top: 5px;
+      font-size: 1.02rem;
+      line-height: 1.36;
+      font-weight: 800;
+    }
+
     .group-meeting {
       display: flex;
       align-items: baseline;
@@ -438,39 +457,6 @@
       line-height: 1.45;
       font-weight: 500;
       opacity: 0.9;
-    }
-
-    .schedule-note {
-      margin: -4px 0 12px;
-      color: var(--imo-navy);
-      font-size: 0.9rem;
-      line-height: 1.4;
-      font-weight: 500;
-      opacity: 0.86;
-    }
-
-    .schedule-row {
-      display: grid;
-      grid-template-columns: 150px 1fr;
-      padding: 11px 0;
-      border-top: 1px solid #D7E2EA;
-      gap: 12px;
-      font-size: 0.95rem;
-    }
-
-    .schedule-row:first-of-type {
-      border-top: 0;
-    }
-
-    .schedule-label {
-      color: var(--imo-navy);
-      font-weight: 900;
-    }
-
-    .schedule-time {
-      color: var(--imo-navy);
-      line-height: 1.5;
-      font-weight: 500;
     }
 
     .doc-links {
@@ -660,11 +646,6 @@
         gap: 12px;
       }
 
-      .schedule-row {
-        grid-template-columns: 1fr;
-        gap: 4px;
-      }
-
       .feedback-actions {
         display: grid;
         grid-template-columns: 1fr;
@@ -686,6 +667,14 @@
 
       .group-code {
         width: 100%;
+      }
+
+      .assignment-heading {
+        font-size: 1.2rem;
+      }
+
+      .assignment-detail {
+        font-size: 0.98rem;
       }
 
       .group-divider {
@@ -767,45 +756,13 @@
 
     <section class="delegate-info" aria-label="Delegate information">
       <article class="info-card">
-        <h2>Plenary timetable</h2>
-
-        <p class="schedule-note">
-          Indicative timetable for plenary sessions only.
+        <h2>Using this page</h2>
+        <p>
+          This page shows public room-location information only. Rooms remain listed even when no meeting is scheduled in that room today.
         </p>
-
-        <div class="schedule-row">
-          <div class="schedule-label">
-            Morning session
-          </div>
-
-          <div class="schedule-time">
-            09:30 – 12:30
-            <br>
-            Coffee break: 11:00 – 11:30
-          </div>
-        </div>
-
-        <div class="schedule-row">
-          <div class="schedule-label">
-            Lunch break
-          </div>
-
-          <div class="schedule-time">
-            12:30 – 14:30
-          </div>
-        </div>
-
-        <div class="schedule-row">
-          <div class="schedule-label">
-            Afternoon session
-          </div>
-
-          <div class="schedule-time">
-            14:30 – 17:30
-            <br>
-            Coffee break: 16:00 – 16:30
-          </div>
-        </div>
+        <p class="info-note">
+          Please check official meeting documents and announcements for agenda, participation and document information.
+        </p>
       </article>
 
       <article class="info-card">
@@ -1020,108 +977,86 @@
 
     function parseTitle(title) {
       const titleParts = splitTitleAtRoomSeparator(normaliseText(title));
-      const restParts = titleParts.rest.split("|").map(normaliseText).filter(Boolean);
+      const restParts = titleParts.rest.split("|").map(normaliseText);
 
       /*
-        Current RSS title format:
-        Room — Display Title | Floor | Optional note
+        New RSS title format:
+        Room — Meeting Title | Group | Display Detail | Floor | Optional note
 
-        Display Title may itself contain a pipe, for example:
-        III 12 - WG 3 | Working Group on ...
+        Empty Group or Display Detail may be preserved as an empty pipe section.
+        Example with no group but with a detail:
+        Room — Meeting Title | | Display Detail | Second floor
 
-        Therefore the page must find the floor first, then treat everything
-        before the floor as the room assignment text. Anything after the floor
-        is an optional note.
+        No-assignment rows stay simpler:
+        Room — No meeting scheduled today | Second floor
       */
-
       const floorIndex = restParts.findIndex(part => looksLikeFloor(part));
-      const useParts = floorIndex >= 0 ? restParts.slice(0, floorIndex) : restParts;
+      const assignmentParts = floorIndex >= 0 ? restParts.slice(0, floorIndex) : restParts;
       const noteParts = floorIndex >= 0 ? restParts.slice(floorIndex + 1) : [];
 
-      const use = useParts
-        .filter(part => !looksLikeDateRange(part))
-        .join(" | ") || defaultNoAssignmentText;
+      const firstAssignmentPart = assignmentParts[0] || defaultNoAssignmentText;
+      const noAssignment = isNoAssignment(firstAssignmentPart);
+
+      let heading = firstAssignmentPart;
+      let detail = "";
+
+      if (!noAssignment) {
+        const meetingTitle = assignmentParts[0] || "";
+        const group = assignmentParts.length > 1 ? assignmentParts[1] : "";
+        const displayDetail = assignmentParts.length > 2
+          ? assignmentParts.slice(2).filter(Boolean).join(" | ")
+          : "";
+
+        heading = group
+          ? meetingTitle + " | " + group
+          : meetingTitle;
+
+        detail = displayDetail;
+
+        /* Backwards compatibility for older RSS titles such as:
+           Room — Meeting Title - WG 1 | Detail | Floor
+        */
+        if (assignmentParts.length === 2 && !group) {
+          detail = assignmentParts[1] || "";
+        }
+      }
 
       const floor = floorIndex >= 0 ? restParts[floorIndex] : "";
 
       const note = noteParts
-        .filter(part => !looksLikeDateRange(part))
+        .filter(part => part && !looksLikeDateRange(part))
         .join(" | ");
 
       return {
         room: titleParts.room,
-        use,
+        use: firstAssignmentPart,
+        heading: heading || defaultNoAssignmentText,
+        detail,
         floor,
-        note
+        note,
+        noAssignment
       };
     }
 
-    function parseGroupInformation(use) {
-      const prefixedPipeMatch = use.match(
-        /^\s*([A-Z]{2,8}\s*\d+[A-Z]?)\s*[-–—]\s*((?:WG|DG|EG)\s*\d+[A-Z]?)\s*[|｜]\s*(.+)$/i
-      );
-
-      if (prefixedPipeMatch) {
-        return {
-          code: normaliseText(prefixedPipeMatch[1].toUpperCase()) + " - " +
-            normaliseText(prefixedPipeMatch[2].toUpperCase()),
-          name: normaliseText(prefixedPipeMatch[3])
-        };
-      }
-
-      const pipeMatch = use.match(
-        /^\s*((?:WG|DG|EG)\s*\d+[A-Z]?)\s*[|｜]\s*(.+)$/i
-      );
-
-      if (pipeMatch) {
-        return {
-          code: normaliseText(pipeMatch[1].toUpperCase()),
-          name: normaliseText(pipeMatch[2])
-        };
-      }
-
-      const bracketMatch = use.match(
-        /^(.*?)\s*\(((?:WG|DG|EG)\s*\d+[A-Z]?)\)\s*$/i
-      );
-
-      if (bracketMatch) {
-        return {
-          code: normaliseText(bracketMatch[2].toUpperCase()),
-          name: normaliseText(bracketMatch[1])
-        };
-      }
-
-      return null;
-    }
-
-    function createMeetingDisplay(use) {
-      const groupInformation = parseGroupInformation(use);
-
-      if (!groupInformation) {
-        return createTextElement(
-          isNoAssignment(use) ? "meeting empty-state" : "meeting",
-          use
-        );
+    function createAssignmentDisplay(data) {
+      if (data.noAssignment) {
+        return createTextElement("meeting empty-state", data.heading);
       }
 
       const wrapper = document.createElement("div");
-      wrapper.className = "group-meeting";
+      wrapper.className = "assignment-display";
 
-      const code = document.createElement("span");
-      code.className = "group-code";
-      code.textContent = groupInformation.code;
+      const heading = document.createElement("div");
+      heading.className = "assignment-heading";
+      heading.textContent = data.heading;
+      wrapper.appendChild(heading);
 
-      const divider = document.createElement("span");
-      divider.className = "group-divider";
-      divider.textContent = "|";
-
-      const name = document.createElement("span");
-      name.className = "group-name";
-      name.textContent = groupInformation.name;
-
-      wrapper.appendChild(code);
-      wrapper.appendChild(divider);
-      wrapper.appendChild(name);
+      if (data.detail) {
+        const detail = document.createElement("div");
+        detail.className = "assignment-detail";
+        detail.textContent = data.detail;
+        wrapper.appendChild(detail);
+      }
 
       return wrapper;
     }
@@ -1129,12 +1064,12 @@
     function createCardFromTitle(title) {
       const data = parseTitle(title);
       const card = document.createElement("article");
-      const noAssignment = isNoAssignment(data.use);
+      const noAssignment = data.noAssignment;
 
       card.className = noAssignment ? "card no-assignment" : "card";
 
       card.appendChild(createTextElement("room", data.room));
-      card.appendChild(createMeetingDisplay(data.use));
+      card.appendChild(createAssignmentDisplay(data));
 
       if (data.note) {
         card.appendChild(createTextElement("room-note", data.note));
@@ -1182,67 +1117,33 @@
         if (items.length === 0) {
           const emptyCard = document.createElement("article");
           emptyCard.className = "card no-assignment";
-
-          emptyCard.appendChild(
-            createTextElement(
-              "room",
-              "No room information available"
-            )
-          );
-
-          emptyCard.appendChild(
-            createTextElement(
-              "meeting empty-state",
-              "Please check again later."
-            )
-          );
-
+          emptyCard.appendChild(createTextElement("room", "No room information available"));
+          emptyCard.appendChild(createTextElement("meeting empty-state", "Please check again later."));
           container.appendChild(emptyCard);
           status.textContent = "No room items found in rss.xml.";
-
           return;
         }
 
         items.forEach(item => {
-          const title = normaliseText(
-            item.querySelector("title")?.textContent || ""
-          );
+          const title = normaliseText(item.querySelector("title")?.textContent || "");
 
           if (title) {
             container.appendChild(createCardFromTitle(title));
           }
         });
 
-        status.textContent =
-          "Information loads from rss.xml and refreshes every 10 minutes.";
-
+        status.textContent = "Information loads from rss.xml and refreshes every 10 minutes.";
       } catch (error) {
         container.innerHTML = "";
 
         const errorCard = document.createElement("article");
         errorCard.className = "card no-assignment";
-
-        errorCard.appendChild(
-          createTextElement(
-            "room",
-            "Unable to load rooms"
-          )
-        );
-
-        errorCard.appendChild(
-          createTextElement(
-            "meeting empty-state",
-            "Please check rss.xml."
-          )
-        );
-
+        errorCard.appendChild(createTextElement("room", "Unable to load rooms"));
+        errorCard.appendChild(createTextElement("meeting empty-state", "Please check rss.xml."));
         container.appendChild(errorCard);
 
         status.textContent = "The page could not read rss.xml.";
-
-        updated.textContent =
-          "Last refresh failed: " + refreshTimeText();
-
+        updated.textContent = "Last refresh failed: " + refreshTimeText();
         console.error(error);
       }
     }
