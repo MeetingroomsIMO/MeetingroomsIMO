@@ -312,6 +312,12 @@
       color: var(--imo-navy);
     }
 
+    .assignment-row + .assignment-row {
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid #D7E2EA;
+    }
+
     .assignment-heading {
       font-size: 1.28rem;
       line-height: 1.18;
@@ -808,9 +814,9 @@
       </article>
     </section>
 
-    <section class="room-availability-section" aria-label="Committee room availability">
+    <section class="room-availability-section" aria-label="Meeting room availability">
       <article class="info-card">
-        <h2>Committee room availability</h2>
+        <h2>Meeting room availability</h2>
 
         <p>
           Not all meetings may be reflected on this page. Delegates should contact
@@ -1105,51 +1111,75 @@
       };
     }
 
+    function parseAssignmentText(assignmentText) {
+      const parts = assignmentText.split("|").map(normaliseText);
+      const firstPart = parts[0] || defaultNoAssignmentText;
+
+      if (isNoAssignment(firstPart)) {
+        return {
+          heading: defaultNoAssignmentText,
+          detail: "",
+          noAssignment: true
+        };
+      }
+
+      const meetingTitle = parts[0] || "";
+      const group = parts.length > 1 ? parts[1] : "";
+      const displayDetail = parts.length > 2
+        ? parts.slice(2).filter(Boolean).join(" | ")
+        : "";
+
+      let heading = group
+        ? meetingTitle + " | " + group
+        : meetingTitle;
+
+      let detail = displayDetail;
+
+      /* Backwards compatibility for older RSS titles such as:
+         Room — Meeting Title - WG 1 | Detail | Floor
+      */
+      if (parts.length === 2 && !group) {
+        detail = parts[1] || "";
+      }
+
+      return {
+        heading: heading || firstPart,
+        detail,
+        noAssignment: false
+      };
+    }
+
     function parseTitle(title) {
       const titleParts = splitTitleAtRoomSeparator(normaliseText(title));
       const restParts = titleParts.rest.split("|").map(normaliseText);
 
       /*
-        New RSS title format:
+        RSS title format for one meeting:
         Room — Meeting Title | Group | Display Detail | Floor | Optional note
 
-        Empty Group or Display Detail may be preserved as an empty pipe section.
-        Example with no group but with a detail:
-        Room — Meeting Title | | Display Detail | Second floor
+        RSS title format for multiple meetings in the same room:
+        Room — Meeting Title | Group | Display Detail; Meeting Title | Group | Display Detail | Floor | Optional note
 
-        No-assignment rows stay simpler:
-        Room — No meeting scheduled today | Second floor
+        The semicolon is an internal separator. The page displays each
+        separated meeting as its own row within the same room card.
       */
       const floorIndex = restParts.findIndex(part => looksLikeFloor(part));
       const assignmentParts = floorIndex >= 0 ? restParts.slice(0, floorIndex) : restParts;
       const noteParts = floorIndex >= 0 ? restParts.slice(floorIndex + 1) : [];
 
-      const firstAssignmentPart = assignmentParts[0] || defaultNoAssignmentText;
-      const noAssignment = isNoAssignment(firstAssignmentPart);
+      const assignmentText = assignmentParts.join(" | ") || defaultNoAssignmentText;
 
-      let heading = firstAssignmentPart;
-      let detail = "";
+      const assignments = assignmentText
+        .split(/\s*;\s*/g)
+        .map(normaliseText)
+        .filter(Boolean)
+        .map(parseAssignmentText);
 
-      if (!noAssignment) {
-        const meetingTitle = assignmentParts[0] || "";
-        const group = assignmentParts.length > 1 ? assignmentParts[1] : "";
-        const displayDetail = assignmentParts.length > 2
-          ? assignmentParts.slice(2).filter(Boolean).join(" | ")
-          : "";
-
-        heading = group
-          ? meetingTitle + " | " + group
-          : meetingTitle;
-
-        detail = displayDetail;
-
-        /* Backwards compatibility for older RSS titles such as:
-           Room — Meeting Title - WG 1 | Detail | Floor
-        */
-        if (assignmentParts.length === 2 && !group) {
-          detail = assignmentParts[1] || "";
-        }
-      }
+      const firstAssignment = assignments[0] || {
+        heading: defaultNoAssignmentText,
+        detail: "",
+        noAssignment: true
+      };
 
       const floor = floorIndex >= 0 ? restParts[floorIndex] : "";
 
@@ -1159,12 +1189,13 @@
 
       return {
         room: titleParts.room,
-        use: firstAssignmentPart,
-        heading: heading || defaultNoAssignmentText,
-        detail,
+        use: firstAssignment.heading,
+        heading: firstAssignment.heading,
+        detail: firstAssignment.detail,
+        assignments,
         floor,
         note,
-        noAssignment
+        noAssignment: assignments.every(assignment => assignment.noAssignment)
       };
     }
 
@@ -1176,17 +1207,26 @@
       const wrapper = document.createElement("div");
       wrapper.className = "assignment-display";
 
-      const heading = document.createElement("div");
-      heading.className = "assignment-heading";
-      heading.textContent = data.heading;
-      wrapper.appendChild(heading);
+      data.assignments
+        .filter(assignment => !assignment.noAssignment)
+        .forEach(assignment => {
+          const row = document.createElement("div");
+          row.className = "assignment-row";
 
-      if (data.detail) {
-        const detail = document.createElement("div");
-        detail.className = "assignment-detail";
-        detail.textContent = data.detail;
-        wrapper.appendChild(detail);
-      }
+          const heading = document.createElement("div");
+          heading.className = "assignment-heading";
+          heading.textContent = assignment.heading;
+          row.appendChild(heading);
+
+          if (assignment.detail) {
+            const detail = document.createElement("div");
+            detail.className = "assignment-detail";
+            detail.textContent = assignment.detail;
+            row.appendChild(detail);
+          }
+
+          wrapper.appendChild(row);
+        });
 
       return wrapper;
     }
