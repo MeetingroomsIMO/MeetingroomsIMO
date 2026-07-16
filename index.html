@@ -431,6 +431,21 @@
       gap: 16px;
     }
 
+    .room-availability-section {
+      margin-top: 16px;
+    }
+
+    .room-availability-section .info-card {
+      border-left: 7px solid var(--imo-ocean);
+    }
+
+    .inline-link {
+      color: var(--imo-navy);
+      font-weight: 900;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
     .info-card,
     .feedback-card {
       padding: 21px;
@@ -790,6 +805,50 @@
     <section class="grid" id="rooms" aria-label="Current room assignments">
       <article class="card">
         <div class="room">Loading rooms...</div>
+      </article>
+    </section>
+
+    <section class="room-availability-section" aria-label="Committee room availability">
+      <article class="info-card">
+        <h2>Committee room availability</h2>
+
+        <p>
+          Not all meetings may be reflected on this page. Delegates should contact
+          <a class="inline-link" href="mailto:meetingservices@imo.org">meetingservices@imo.org</a>
+          to enquire about room availability.
+        </p>
+
+        <div class="doc-links">
+          <a
+            class="doc-link"
+            href="https://docs.imo.org/Shared/Download.aspx?did=158307"
+            target="_blank"
+            rel="noopener"
+          >
+            Guidance on the use and booking of meeting rooms by delegations at IMO Headquarters
+          </a>
+        </div>
+      </article>
+    </section>
+
+    <section class="room-availability-section" aria-label="Code of Conduct">
+      <article class="info-card">
+        <h2>Code of Conduct</h2>
+
+        <p>
+          Delegates, observers and other participants are encouraged to review the Code of Conduct for IMO meetings, events and activities.
+        </p>
+
+        <div class="doc-links">
+          <a
+            class="doc-link"
+            href="https://wwwcdn.imo.org/localresources/en/OurWork/Documents/Circular-Letter-No-4908.pdf"
+            target="_blank"
+            rel="noopener"
+          >
+            Code of Conduct for Delegates, Observers and Other Participants at IMO Meetings, Events and Activities to Prevent Harassment including Sexual Harassment
+          </a>
+        </div>
       </article>
     </section>
 
